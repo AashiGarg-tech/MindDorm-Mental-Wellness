@@ -14,10 +14,10 @@ import PreviousSessionsSummary from './PreviousSessionsSummary';
 
 const WellnessDashboard = () => {
     return (
-      <div className="min-h-screen bg-gray-50 font-sans">
+      <div className="min-h-screen bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] font-sans">
         <Header />
         <main className="container mx-auto px-4 py-8">
-          <h1 className="text-3xl font-semibold text-gray-800 mb-8">
+          <h1 className="text-5xl font-semibold text-[#000459] mb-8">
             Your Wellness Dashboard
           </h1>
   
