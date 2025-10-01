@@ -1,7 +1,7 @@
 // src/pages/Dashboard.jsx
 
 import React from 'react';
-import Header from '../Header'; // Assume you have a header component
+// import Header from '../Header'; // Assume you have a header component
 import StatCard from './StatCard';
 import ChartCard from './ChartCard';
 import CounsellorCard from './CounsellorCard';
@@ -11,7 +11,7 @@ const AdminDashboard = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB]">
       {/* 1. Header/Navigation (You'd implement this) */}
-      <Header /> 
+      {/* <Header />  */}
 
       <div className="p-8 max-w-7xl mx-auto">
         {/* Admin Dashboard Title */}
