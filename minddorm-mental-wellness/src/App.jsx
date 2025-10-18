@@ -25,10 +25,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./pages/Header"; // Optional: include your header
 import HomePage from "./pages/Home/HomePage";
-import Resources from "./pages/Resources/articles_page";
-import Resources from "./pages/Resources/video_page";
-import Resources from "./pages/Resources/audio_page";
-import Resources from "./pages/Resources/support_condition";
+import Resources from "./pages/resources/articles_page";
+import Resources from "./pages/resources/video_page";
+import Resources from "./pages/resources/audio_page";
+import Resources from "./pages/resources/support_condition";
 import WellnessDashboard from "./pages/UserDasboard/WellnessDashboard";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 
