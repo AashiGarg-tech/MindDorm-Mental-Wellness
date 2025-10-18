@@ -25,9 +25,9 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./pages/Header"; // Optional: include your header
 import HomePage from "./pages/Home/HomePage";
-import Resources from "./pages/resources/articles_page";
-import Resources from "./pages/resources/video_page";
-import Resources from "./pages/resources/audio_page";
+import resources from "./pages/resources/articles_page";
+import resources from "./pages/resources/video_page";
+import resources from "./pages/resources/audio_page";
 import Resources from "./pages/resources/support_condition";
 import WellnessDashboard from "./pages/UserDasboard/WellnessDashboard";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
