@@ -25,6 +25,10 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import Header from "./pages/Header"; // Optional: include your header
 import HomePage from "./pages/Home/HomePage";
+import Resources from "./pages/Resources/articles_page";
+import Resources from "./pages/Resources/video_page";
+import Resources from "./pages/Resources/audio_page";
+import Resources from "./pages/Resources/support_condition";
 import WellnessDashboard from "./pages/UserDasboard/WellnessDashboard";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
 
@@ -34,6 +38,10 @@ function App() {
       <Header /> {/* Optional: persistent header across pages */}
       <Routes>
         <Route path="/HomePage" element={<HomePage />} />
+        <Route path="/articles_page" element={<articles_page />} />
+        <Route path="/video_page" element={<video_page />} />
+        <Route path="/audio_page" element={<audio_page />} />
+        <Route path="/support_condition" element={<support_condition />} />
         <Route path="/WellnessDashboard" element={<WellnessDashboard />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
       </Routes>
