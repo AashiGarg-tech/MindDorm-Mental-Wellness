@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Mail, Lock, User, Leaf } from 'lucide-react';
-
+import { useNavigate } from 'react-router-dom';
 // Assuming you have placed 'bird.png' in your public folder or imported it
 const birdImage = '/brain.png'; // ⬅️ Change this path if your image is in src/assets/
 
@@ -22,6 +22,7 @@ const AuthInput = ({ icon: Icon, type, placeholder, name, value, onChange }) => 
 
 const AuthPage = () => {
   const [isLogin, setIsLogin] = useState(true);
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -39,11 +40,12 @@ const AuthPage = () => {
     e.preventDefault();
     console.log(`${isLogin ? 'Login' : 'Sign Up'} attempted:`, formData);
     // TODO: Add actual API call here
+    navigate('/HomePage');
   };
 
   const title = isLogin ? 'Welcome Back to BetterX' : 'Join BetterX Today';
   const callout = isLogin ? 'Your daily dose of calm awaits.' : 'Find your inner peace and track your mood.';
-  const buttonText = isLogin ? 'Login Securely' : 'Create Account';
+  const buttonText = isLogin ? 'Login' : 'Create Account';
 
   return (
     <div className="h-screen flex items-center justify-center bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] p-4">
