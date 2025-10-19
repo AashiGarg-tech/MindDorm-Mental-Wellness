@@ -10,7 +10,7 @@ import AnnouncementsPage from "./pages/Community/AnnouncementsPage";
 import ListenLearnPage from "./pages/Community/ListenLearnPage";
 import ReachOutPage from "./pages/Community/ReachOutPage";
 import CommunityHeader from "./pages/Community/CommunityHeader";
-
+import ChatPage from "./pages/ChatBot/ChatPage";
 function App() {
   return (
     <Router>
@@ -27,6 +27,7 @@ function App() {
           <Route path="/ListenLearnPage" element={<ListenLearnPage />} />
           <Route path="/ReachOutPage" element={<ReachOutPage />} />
           <Route path="/CommunityHeader" element={<CommunityHeader />} />
+          <Route path="/ChatPage" element={<ChatPage/>} /> 
         </Routes>
       </div>
     </Router>
