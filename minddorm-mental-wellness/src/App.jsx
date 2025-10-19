@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
 import Header from "./components/Header";
 import HomePage from "./pages/Home/HomePage";
@@ -10,30 +10,38 @@ import AnnouncementsPage from "./pages/Community/AnnouncementsPage";
 import ListenLearnPage from "./pages/Community/ListenLearnPage";
 import ReachOutPage from "./pages/Community/ReachOutPage";
 import CommunityHeader from "./pages/Community/CommunityHeader";
-import AuthPage from "./pages/LoginPage/AuthPage";
-
-import AuthPage from "./pages/LoginPage/AuthPage";
-
 import ChatPage from "./pages/ChatBot/ChatPage";
+import AuthPage from "./pages/LoginPage/AuthPage";
+
+const AppContent = () => {
+  const location = useLocation();
+
+  // Hide header on AuthPage (path "/")
+  const hideHeader = location.pathname === "/";
+
+  return (
+    <div className="min-h-screen font-sans bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB]">
+      {!hideHeader && <Header />}
+      <Routes>
+        <Route path="/" element={<AuthPage />} />
+        <Route path="/HomePage" element={<HomePage />} />
+        <Route path="/ArticlesPage" element={<ArticlesPage />} />
+        <Route path="/WellnessDashboard" element={<WellnessDashboard />} />
+        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route path="/AnnouncementsPage" element={<AnnouncementsPage />} />
+        <Route path="/ListenLearnPage" element={<ListenLearnPage />} />
+        <Route path="/ReachOutPage" element={<ReachOutPage />} />
+        <Route path="/CommunityHeader" element={<CommunityHeader />} />
+        <Route path="/ChatPage" element={<ChatPage />} />
+      </Routes>
+    </div>
+  );
+};
+
 function App() {
   return (
     <Router>
-      {/* Wrap all pages in a container with gradient */}
-      <div className="min-h-screen font-sans bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB]">
-        <Header />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/HomePage" element={<HomePage />} />
-          <Route path="/ArticlesPage" element={<ArticlesPage />} />
-          <Route path="/WellnessDashboard" element={<WellnessDashboard />} />
-          <Route path="/AdminDashboard" element={<AdminDashboard />} />
-          <Route path="/AnnouncementsPage" element={<AnnouncementsPage />} />
-          <Route path="/ListenLearnPage" element={<ListenLearnPage />} />
-          <Route path="/ReachOutPage" element={<ReachOutPage />} />
-          <Route path="/CommunityHeader" element={<CommunityHeader />} />
-          <Route path="/ChatPage" element={<ChatPage/>} /> 
-        </Routes>
-      </div>
+      <AppContent />
     </Router>
   );
 }
