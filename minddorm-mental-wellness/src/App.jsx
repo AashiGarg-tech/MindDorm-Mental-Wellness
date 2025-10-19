@@ -12,6 +12,9 @@ import ReachOutPage from "./pages/Community/ReachOutPage";
 import CommunityHeader from "./pages/Community/CommunityHeader";
 import AuthPage from "./pages/LoginPage/AuthPage";
 
+import AuthPage from "./pages/LoginPage/AuthPage";
+
+import ChatPage from "./pages/ChatBot/ChatPage";
 function App() {
   return (
     <Router>
@@ -19,7 +22,7 @@ function App() {
       <div className="min-h-screen font-sans bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB]">
         <Header />
         <Routes>
-          <Route path="/" element={<AuthPage />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/HomePage" element={<HomePage />} />
           <Route path="/ArticlesPage" element={<ArticlesPage />} />
           <Route path="/WellnessDashboard" element={<WellnessDashboard />} />
@@ -28,6 +31,7 @@ function App() {
           <Route path="/ListenLearnPage" element={<ListenLearnPage />} />
           <Route path="/ReachOutPage" element={<ReachOutPage />} />
           <Route path="/CommunityHeader" element={<CommunityHeader />} />
+          <Route path="/ChatPage" element={<ChatPage/>} /> 
         </Routes>
       </div>
     </Router>
