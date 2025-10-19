@@ -278,10 +278,10 @@ const HomePage = () => {
             </div>
             
             {/* Feeling Cards */}
-            <div className="flex flex-nowrap gap-4 justify-center pb-2 overflow-x-hidden">
+            <div className="flex flex-nowrap gap-3 justify-center pb-2 ">
               
               {/* Stress */}
-              <div className="rounded-full bg-[#B5D8EB] bg-opacity-80 px-7 py-6 flex flex-col items-center w-48 min-w-[12rem]">
+              <div className="rounded-full bg-[#B5D8EB] bg-opacity-70 px-7 py-6 flex flex-col items-center w-48 min-w-[12rem]">
                 <span className="text-2xl mb-2">🧘</span>
                 <div className="font-semibold text-[#000459]">Stress</div>
                 <div className="text-xs text-slate-700 mt-1 text-center">
@@ -290,7 +290,7 @@ const HomePage = () => {
               </div>
               
               {/* Anxiety */}
-              <div className="rounded-full bg-[#CDEBFF] bg-opacity-80 px-7 py-6 flex flex-col items-center w-48 min-w-[12rem]">
+              <div className="rounded-full bg-[#CDEBFF] bg-opacity-70 px-7 py-6 flex flex-col items-center w-48 min-w-[12rem]">
                 <span className="text-2xl mb-2">😟</span>
                 <div className="font-semibold text-[#000459]">Anxiety</div>
                 <div className="text-xs text-slate-700 mt-1 text-center">
@@ -299,7 +299,7 @@ const HomePage = () => {
               </div>
               
               {/* Loneliness */}
-              <div className="rounded-full bg-[#D8C9FF] bg-opacity-80 px-7 py-6 flex flex-col items-center w-48 min-w-[12rem]">
+              <div className="rounded-full bg-[#D8C9FF] bg-opacity-70 px-7 py-6 flex flex-col items-center w-48 min-w-[12rem]">
                 <span className="text-2xl mb-2">😔</span>
                 <div className="font-semibold text-[#000459]">Loneliness</div>
                 <div className="text-xs text-slate-700 mt-1 text-center">
@@ -308,7 +308,7 @@ const HomePage = () => {
               </div>
               
               {/* Depression */}
-              <div className="rounded-full bg-[#FFD6D6] bg-opacity-80 px-7 py-6 flex flex-col items-center w-48 min-w-[12rem]">
+              <div className="rounded-full bg-[#FFD6D6] bg-opacity-70 px-7 py-6 flex flex-col items-center w-48 min-w-[12rem]">
                 <span className="text-2xl mb-2">😞</span>
                 <div className="font-semibold text-[#000459]">Depression</div>
                 <div className="text-xs text-slate-700 mt-1 text-center">
@@ -317,7 +317,7 @@ const HomePage = () => {
               </div>
               
               {/* Overthinking */}
-              <div className="rounded-full bg-[#E6F4F1] bg-opacity-80 px-7 py-6 flex flex-col items-center w-48 min-w-[12rem]">
+              <div className="rounded-full bg-[#E6F4F1] bg-opacity-70 px-7 py-6 flex flex-col items-center w-48 min-w-[12rem]">
                 <span className="text-2xl mb-2">🤯</span>
                 <div className="font-semibold text-[#000459]">Overthinking</div>
                 <div className="text-xs text-slate-700 mt-1 text-center">
@@ -326,7 +326,7 @@ const HomePage = () => {
               </div>
               
               {/* Burnout */}
-              <div className="rounded-full bg-[#FFE3D8] bg-opacity-80 px-7 py-6 flex flex-col items-center w-48 min-w-[12rem]">
+              <div className="rounded-full bg-[#FFE3D8] bg-opacity-70 px-7 py-6 flex flex-col items-center w-48 min-w-[12rem]">
                 <span className="text-2xl mb-2">🔥</span>
                 <div className="font-semibold text-[#000459]">Burnout</div>
                 <div className="text-xs text-slate-700 mt-1 text-center">

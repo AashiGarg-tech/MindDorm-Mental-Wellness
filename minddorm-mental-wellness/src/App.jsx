@@ -33,6 +33,7 @@ function App() {
     <Router>
       <Header /> {/* Optional: persistent header across pages */}
       <Routes>
+        <Route path="/" element={<HomePage />} />
         <Route path="/HomePage" element={<HomePage />} />
         <Route path="/WellnessDashboard" element={<WellnessDashboard />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
