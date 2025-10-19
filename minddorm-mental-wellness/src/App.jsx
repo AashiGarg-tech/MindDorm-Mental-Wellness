@@ -10,6 +10,7 @@ import AnnouncementsPage from "./pages/Community/AnnouncementsPage";
 import ListenLearnPage from "./pages/Community/ListenLearnPage";
 import ReachOutPage from "./pages/Community/ReachOutPage";
 import CommunityHeader from "./pages/Community/CommunityHeader";
+import AuthPage from "./pages/LoginPage/AuthPage";
 
 function App() {
   return (
@@ -18,7 +19,7 @@ function App() {
       <div className="min-h-screen font-sans bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB]">
         <Header />
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<AuthPage />} />
           <Route path="/HomePage" element={<HomePage />} />
           <Route path="/ArticlesPage" element={<ArticlesPage />} />
           <Route path="/WellnessDashboard" element={<WellnessDashboard />} />
