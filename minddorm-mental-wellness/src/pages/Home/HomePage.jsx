@@ -147,6 +147,7 @@
 
 
 import React from 'react';
+import { Link } from 'react-router-dom'
 
 const HomePage = () => {
   return (
@@ -159,20 +160,30 @@ const HomePage = () => {
           <h1 className="text-4xl md:text-5xl font-bold text-[#000459] mb-2 leading-tight">
             For minds that need <span className="whitespace-nowrap">a moment</span>
           </h1>
+
           <p className="text-lg text-slate-600 mb-6">
-            "For every student who feels overwhelmed."
+            <a href="#feelings" className="hover:underline">
+              "For every student who feels overwhelmed."
+            </a>
           </p>
-          
+
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 mb-4">
-            <button className="bg-[#F4F8FB] text-[#000459] px-6 py-2 rounded-full font-semibold border border-[#D6E6F2] hover:bg-blue-100 transition">
+            <a
+              href="/WellnessDashboard"
+              className="bg-[#F4F8FB] text-[#000459] px-6 py-2 rounded-full font-semibold border border-[#D6E6F2] hover:bg-blue-100 transition inline-flex items-center justify-center"
+            >
               Start Your Journey
-            </button>
-            <button className="bg-[#F4F8FB] text-[#000459] px-6 py-2 rounded-full font-semibold border border-[#D6E6F2] hover:bg-blue-100 transition">
+            </a>
+
+            <a
+              href="#community"
+              className="bg-[#F4F8FB] text-[#000459] px-6 py-2 rounded-full font-semibold border border-[#D6E6F2] hover:bg-blue-100 transition inline-flex items-center justify-center"
+            >
               Join our community
-            </button>
+            </a>
           </div>
-          
+
           {/* Calm Track Section */}
           <div className="mb-4">
             <p className="text-slate-500 text-base font-medium mb-2">

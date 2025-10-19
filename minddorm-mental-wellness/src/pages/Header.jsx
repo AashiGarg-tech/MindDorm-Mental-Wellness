@@ -57,7 +57,7 @@ const Header = () => {
     { name: 'Support', href: '/support' },
     { name: 'Chat', href: '/chat' },
     { name: 'Community', href: '/community' },
-    { name: 'Resources', href: '/resources' },
+    { name: 'Resources', href: '/ArticlesPage' },
     { name: 'Track Mood', href: '/wellness' },
     { name: 'Dashboard', href: '/WellnessDashboard' },
   ];
