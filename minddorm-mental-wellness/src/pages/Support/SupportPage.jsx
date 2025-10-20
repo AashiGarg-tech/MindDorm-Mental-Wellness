@@ -35,7 +35,7 @@ const ExpertCard = ({ name, title, experience, available, tags, avatar }) => (
 );
 
 // Main Home Page Component
-const HomePage = ({ onNavigate, currentPage }) => { // ACCEPTS currentPage PROP
+const SupportPage = ({ onNavigate, currentPage }) => { // ACCEPTS currentPage PROP
 
     const expertsData = [
         // Updated Avatars to use local images img16-19
@@ -216,4 +216,4 @@ const HomePage = ({ onNavigate, currentPage }) => { // ACCEPTS currentPage PROP
     );
 };
 
-export default HomePage;
+export default SupportPage;

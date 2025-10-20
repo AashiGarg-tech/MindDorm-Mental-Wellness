@@ -80,6 +80,9 @@ import AuthPage from "./pages/LoginPage/AuthPage";
 
 import HomePage from "./pages/Home/HomePage";
 
+import SupportPage from "./pages/Support/SupportPage";  
+import WellnessCard from "./pages/Support/WellnessCard";
+import ResourceIcon from "./pages/Support/ResourceIcon";  
 import CallAway from "./pages/Support/CallAway";
 import PathwaysToWellness from "./pages/Support/PathwaysToWellness";
 
@@ -117,6 +120,9 @@ const AppContent = () => {
         <Route path="/ReachOutPage" element={<ReachOutPage />} />
         <Route path="/CommunityHeader" element={<CommunityHeader />} />
         <Route path="/SupportOptions" element={<SupportOptions />} />
+        <Route path="/WellnessCard" element={<WellnessCard />} />
+        <Route path="/SupportPage" element={<SupportPage />} />
+        <Route path="/ResourceIcon" element={<ResourceIcon />} />
         <Route path="/ArticlesPage" element={<ArticlesPage />} />
         <Route path="/AudioPage" element={<AudioPage />} />
         <Route path="/VideosPage" element={<VideosPage />} />

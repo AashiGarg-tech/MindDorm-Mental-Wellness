@@ -69,7 +69,7 @@ const Header = () => {
 
   const navItems = [
     { name: 'Home', href: '/HomePage' },
-    { name: 'Support', href: '#' },
+    { name: 'Support', href: '/SupportPage' },
     { name: 'Chat', href: '/ChatPage' },
     { name: 'Community', href: '/AnnouncementsPage' },
     { name: 'Resources', href: '/ArticlesPage' },
