@@ -146,8 +146,8 @@
 
 
 
-import React from 'react';
-import { Link } from 'react-router-dom'
+// import React from 'react';
+// import { Link } from 'react-router-dom'
 
 const HomePage = () => {
   return (
@@ -177,7 +177,7 @@ const HomePage = () => {
             </a>
 
             <a
-              href="#community"
+              href="/Community"
               className="bg-[#F4F8FB] text-[#000459] px-6 py-2 rounded-full font-semibold border border-[#D6E6F2] hover:bg-blue-100 transition inline-flex items-center justify-center"
             >
               Join our community

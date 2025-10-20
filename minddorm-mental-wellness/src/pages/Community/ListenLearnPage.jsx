@@ -7,6 +7,8 @@ const ListenLearnPage = () => {
     {
       id: 1,
       user: 'USER 1',
+      avatar: 'https://via.placeholder.com/40',
+      timestamp: '2 days ago',
       text: "A few years ago, I was overwhelmed by depression and anxiety. It felt impossible to get through each day. But with therapy, support from friends, and self-care, I've gradually found my way back. It's still a journey, but I'm stronger now.",
       likes: 24,
       comments: 5,
@@ -15,6 +17,8 @@ const ListenLearnPage = () => {
     {
       id: 2,
       user: 'USER 2',
+      avatar: 'https://via.placeholder.com/40',
+      timestamp: '5 days ago',
       text: "For a long time, I ignored my feelings and pushed through the stress. Eventually, it caught up with me — I experienced burnout and panic attacks. Seeking help was hard, but therapy and mindfulness practices changed my life. Now, I prioritize my mental health and feel more balanced every day.",
       likes: 18,
       comments: 3,
@@ -60,31 +64,44 @@ const ListenLearnPage = () => {
             </div>
           </div>
 
+          <h3 className="text-lg font-semibold text-[#2B5A7A] mb-4">Shared Stories</h3>
+
           <div className="space-y-6">
             {stories.map((story) => (
-              <div key={story.id}>
-                <div className="mb-2">
-                  <p className="font-bold text-sm text-[#2B5A7A]">{story.user}</p>
+              <div
+                key={story.id}
+                className="bg-[#EDF3F8] rounded-2xl p-6 hover:shadow-md transition"
+              >
+                <div className="flex items-center gap-3 mb-2">
+                  <img
+                    src={story.avatar}
+                    alt={story.user}
+                    className="w-10 h-10 rounded-full object-cover"
+                  />
+                  <div>
+                    <p className="font-bold text-sm text-[#2B5A7A]">{story.user}</p>
+                    <p className="text-xs text-slate-500">{story.timestamp}</p>
+                  </div>
                 </div>
 
-                <div className="bg-[#EDF3F8] rounded-2xl p-6 relative">
-                  <p className="text-sm text-slate-700 pr-8">
-                    {expandedStories[story.id]
-                      ? story.text
-                      : story.text.length > 150
-                      ? story.text.slice(0, 150) + '...'
-                      : story.text}
-                  </p>
+                <p className="text-sm text-slate-700 mb-4">
+                  {expandedStories[story.id]
+                    ? story.text
+                    : story.text.length > 150
+                    ? story.text.slice(0, 150) + '...'
+                    : story.text}
+                </p>
 
+                {story.text.length > 150 && (
                   <button
                     onClick={() => toggleExpand(story.id)}
-                    className="absolute bottom-4 right-4 text-slate-400 hover:text-slate-600"
+                    className="text-xs text-blue-500 hover:underline"
                   >
-                    {expandedStories[story.id] ? '⌃' : '⌄'}
+                    {expandedStories[story.id] ? 'Show less' : 'Read more'}
                   </button>
-                </div>
+                )}
 
-                <div className="flex items-center gap-6 mt-4 ml-2">
+                <div className="flex items-center gap-6 mt-4">
                   <button
                     onClick={() => handleLike(story.id)}
                     className={`flex items-center gap-2 ${
@@ -109,7 +126,10 @@ const ListenLearnPage = () => {
           </div>
 
           {/* Post Your Story Button */}
-          <div className="mt-8 pt-6 border-t border-slate-200">
+          <div className="mt-10 pt-6 border-t border-slate-200">
+            <h3 className="text-lg font-semibold text-[#2B5A7A] mb-4 text-center">
+              Your Voice Matters
+            </h3>
             <button className="w-full bg-[#E8A287] text-white py-3 rounded-full font-medium hover:bg-[#D89277] transition flex items-center justify-center gap-2">
               POST YOURS
               <span className="text-xl">+</span>

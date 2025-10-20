@@ -1,4 +1,11 @@
 import React from 'react';
+import {
+  CalendarIcon,
+  HeartIcon,
+  SparklesIcon,
+  SunIcon,
+  PencilIcon
+} from '@heroicons/react/24/solid';
 import CommunityHeader from './CommunityHeader';
 
 const AnnouncementsPage = () => {
@@ -6,27 +13,37 @@ const AnnouncementsPage = () => {
     {
       id: 1,
       title: 'October 10 – World Mental Health Day',
-      description: "Today, we're hosting live sessions and gentle yoga to honor this day. Join us to reflect, connect, and breathe."
+      description:
+        "Today, we're hosting live sessions and gentle yoga to honor this day. Join us to reflect, connect, and breathe.",
+      icon: <HeartIcon className="h-6 w-6 text-[#2B5A7A]" />
     },
     {
       id: 2,
       title: 'June 21 – International Yoga Day',
-      description: "Let's breathe in and out together. Exhale the stress of the month and return to your center."
+      description:
+        "Let's breathe in and out together. Exhale the stress of the month and return to your center.",
+      icon: <SunIcon className="h-6 w-6 text-[#2B5A7A]" />
     },
     {
       id: 3,
       title: 'September 7-13 – Suicide Prevention Week',
-      description: "We're sharing stories of hope, healing, and quiet courage. Let's remind each other: you're not alone."
+      description:
+        "We're sharing stories of hope, healing, and quiet courage. Let's remind each other: you're not alone.",
+      icon: <SparklesIcon className="h-6 w-6 text-[#2B5A7A]" />
     },
     {
       id: 4,
       title: 'May – Mental Health Awareness Month',
-      description: "A full month to run student-led campaigns, share resources, and create safe spaces for open conversations."
+      description:
+        'A full month to run student-led campaigns, share resources, and create safe spaces for open conversations.',
+      icon: <CalendarIcon className="h-6 w-6 text-[#2B5A7A]" />
     },
     {
       id: 5,
       title: 'November 15-22 – Art for Awareness Week (suggested date)',
-      description: "Express what words can't. Submit your artwork to help others feel seen and understood."
+      description:
+        "Express what words can't. Submit your artwork to help others feel seen and understood.",
+      icon: <PencilIcon className="h-6 w-6 text-[#2B5A7A]" />
     }
   ];
 
@@ -53,14 +70,17 @@ const AnnouncementsPage = () => {
             {announcements.map((announcement) => (
               <div
                 key={announcement.id}
-                className="border-b border-slate-200 pb-6 last:border-b-0"
+                className="flex items-start gap-4 border-b border-slate-200 pb-6 last:border-b-0"
               >
-                <h3 className="font-bold text-[#2B5A7A] mb-2">
-                  {announcement.title}
-                </h3>
-                <p className="text-sm text-slate-600">
-                  {announcement.description}
-                </p>
+                <div className="flex-shrink-0 mt-1">{announcement.icon}</div>
+                <div>
+                  <h3 className="font-bold text-[#2B5A7A] mb-2">
+                    {announcement.title}
+                  </h3>
+                  <p className="text-sm text-slate-600">
+                    {announcement.description}
+                  </p>
+                </div>
               </div>
             ))}
           </div>

@@ -98,7 +98,7 @@
 // }
 
 import { Clock, Star } from "lucide-react";
-import SupportOptions from "./support_condition.jsx";
+import SupportOptions from "./support_condition";
 
 const ArticlesPage = () => {
   const articles = [

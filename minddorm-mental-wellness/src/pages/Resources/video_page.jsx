@@ -1,4 +1,4 @@
-import SupportOptions from "../components/SupportOptions";
+import SupportOptions from "./support_condition";
 import { Clock, PlayCircle } from "lucide-react";
 
 export default function VideosPage() {

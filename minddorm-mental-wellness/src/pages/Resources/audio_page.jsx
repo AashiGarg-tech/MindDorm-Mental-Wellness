@@ -1,4 +1,4 @@
-import SupportOptions from "../components/SupportOptions";
+import SupportOptions from "./support_condition";
 import { Music2, Clock, Play } from "lucide-react";
 
 export default function AudioPage() {
