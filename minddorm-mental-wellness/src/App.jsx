@@ -1,12 +1,12 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
-// IMPORT YOUR NEW PAGES (Assuming they were moved to src/pages)
-import HomePage from "./pages/HomePage"; 
-import CallAway from "./pages/CallAway"; 
-import PathwaysToWellness from "./pages/PathwaysToWellness"; 
+// 1. FIXED IMPORTS: POINTING TO THE CORRECT 'pages/Support' FOLDER
+import HomePage from "./pages/Support/HomePage"; 
+import CallAway from "./pages/Support/CallAway"; 
+import PathwaysToWellness from "./pages/Support/PathwaysToWellness"; 
 
-// --- Existing Imports (Verify paths match your repository) ---
+// --- Existing Imports (These paths are assumed to be correct for the repository) ---
 import Header from "./components/Header";
 import ArticlesPage from "./pages/Resources/ArticlesPage"; 
 import WellnessDashboard from "./pages/UserDasboard/WellnessDashboard";
