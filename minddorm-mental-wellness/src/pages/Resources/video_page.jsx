@@ -17,7 +17,7 @@ export default function VideoPage() {
       views: "10M views",
       time: "27:22",
       desc: "Practice the 12 postures of Surya Namaskar with sacred Vedic chants.",
-      thumb: "/surya_namaskar.jpg",
+      thumb: "/surya_namaskar.png",
       link: "https://www.youtube.com/watch?v=7s0E8ecWncM",
     },
     {
@@ -25,7 +25,7 @@ export default function VideoPage() {
       views: "4M views",
       time: "15:52",
       desc: "Learn this evidence-based technique to release physical tension and stress.",
-      thumb: "/pmr.jpg",
+      thumb: "/pmr.avif",
       link: "https://www.youtube.com/watch?v=86HUcX8ZtAk",
     },
     {
@@ -97,6 +97,7 @@ export default function VideoPage() {
     </div>
   );
 }
+
 
 
 
