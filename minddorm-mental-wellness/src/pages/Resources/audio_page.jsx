@@ -8,43 +8,43 @@ export default function AudioPage() {
       title: "Study Focus: Lo-Fi Beats",
       desc: "Gentle lofi music to help you concentrate while studying.",
       tracks: "500 tracks",
-      duration: "18hr",
-      link: "https://open.spotify.com/playlist/37i9dQZF1DX8Uebhn9wzrS",
+      duration: "20hrs",
+      link: "https://open.spotify.com/playlist/0vvXsWCC9xrXsKd4FyS8kM",
     },
     {
       title: "Calming Nature Sounds",
       desc: "Peaceful sounds of rain, ocean waves, and forest ambiance for relaxation.",
-      tracks: "305 tracks",
-      duration: "14hr",
-      link: "https://open.spotify.com/playlist/37i9dQZF1DWU0ScTcjJBdj",
+      tracks: "300 tracks",
+      duration: "14hrs",
+      link: "https://open.spotify.com/playlist/2sWwKJKAznIkvjoFRJ3ag3",
     },
     {
       title: "Meditation & Mindfulness",
       desc: "Peaceful meditations and ambient sounds for mindfulness practice.",
       tracks: "182 tracks",
-      duration: "8hr",
-      link: "https://open.spotify.com/playlist/37i9dQZF1DX3PIPIT6lEg5",
+      duration: "12hrs",
+      link: "https://open.spotify.com/playlist/43j9sAZenNQcQ5A4ITyJ82",
     },
     {
       title: "Ragas for Relaxation",
       desc: "Immerse yourself in the timeless beauty of Indian classical ragas.",
-      tracks: "155 tracks",
-      duration: "12hr",
-      link: "https://open.spotify.com/playlist/37i9dQZF1DXb9LIXaj5WhL",
+      tracks: "69 tracks",
+      duration: "8hrs",
+      link: "https://open.spotify.com/playlist/37i9dQZF1DX0Ggu1WtO1dT",
     },
     {
       title: "Sacred Flute Meditations",
       desc: "Serene and soulful melodies of the Bansuri (Indian bamboo flute).",
-      tracks: "110 tracks",
+      tracks: "208 tracks",
       duration: "9hr",
-      link: "https://open.spotify.com/playlist/37i9dQZF1DWYtBDn1WXj6B",
+      link: "https://open.spotify.com/playlist/66oeOdZOJ6XYP92kkibWYm",
     },
     {
       title: "Echoes of the Himalayas",
       desc: "Grounding Vedic chants and resonant vibrations for mental focus.",
-      tracks: "190 tracks",
-      duration: "1hr",
-      link: "https://open.spotify.com/playlist/37i9dQZF1DX3rxVfibe1L0",
+      tracks: "12 tracks",
+      duration: "45 min",
+      link: "https://open.spotify.com/album/4ZHUK6G1kJmg2WrawAH7Gt",
     },
   ];
 
@@ -85,4 +85,5 @@ export default function AudioPage() {
     </div>
   );
 }
+
 
