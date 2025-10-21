@@ -44,9 +44,12 @@ export default function SupportOptions() {
         ))}
       </div>
 
-      <p className="text-center mt-8 text-blue-700 font-medium">
-        Don’t worry, Be happy 
-      </p>
-    </div>
+       
+       <footer className="text-center mt-10 text-gray-600 text-sm">
+                <p>Don't worry Be happy</p>
+            </footer>
+            </div>
+        </div>
   );
 }
+
