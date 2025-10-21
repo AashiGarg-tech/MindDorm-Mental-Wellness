@@ -96,6 +96,7 @@
 //     </div>
 //   );
 // }
+import React from "react";
 import ResourcesNav from "../../components/ResourcesNav";
 
 
@@ -242,3 +243,4 @@ export default function ArticlesPage() {
     </div>
   );
 }
+
