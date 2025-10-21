@@ -159,9 +159,9 @@ const ListenLearnPage = () => {
         </div>
 
         {/* Footer */}
-        <footer className="text-center text-lg text-[#2B5A7A] mt-8 py-4">
-          Don't worry Be happy
-        </footer>
+        <footer className="text-center mt-10 text-gray-600 text-sm">
+                <p>Don't worry Be happy</p>
+            </footer>
       </div>
     </div>
   );
