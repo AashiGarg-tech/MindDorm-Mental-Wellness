@@ -9,7 +9,7 @@ export default function ResourcesNav() {
   ];
 
   return (
-    <nav className="w-[400px] mx-auto bg-white shadow-sm border border-gray-200 rounded-xl py-2 mt-6">
+    <nav className="w-[400px] mx-auto bg-white shadow-sm border border-gray-200 rounded-xl py-2 mt-12">
       <div className="flex justify-center space-x-6">
         {navItems.map((item) => (
           <NavLink
