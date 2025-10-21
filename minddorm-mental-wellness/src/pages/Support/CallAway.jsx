@@ -3,11 +3,12 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom'; 
 import { Phone, MessageSquare, Briefcase, Lock, AlertTriangle, LifeBuoy, Heart, Twitter, MessageCircle, Info } from 'lucide-react'; 
 
-// --- 1. EmergencyButton Component (No changes needed here) ---
+// --- 1. EmergencyButton Component (UPDATED: duration-150 -> duration-300) ---
 const EmergencyButton = ({ title, number, color }) => (
     <a 
         href={`tel:${number}`} 
-        className={`p-4 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-md border-2 border-gray-100 bg-${color}-50 hover:bg-${color}-100 transition duration-150 cursor-pointer no-underline text-current`}
+        // CHANGED: duration-150 -> duration-300
+        className={`p-4 rounded-lg flex flex-col items-center justify-center min-w-[120px] shadow-md border-2 border-gray-100 bg-${color}-50 hover:bg-${color}-100 transition duration-300 cursor-pointer no-underline text-current`}
     >
         <div className={`text-3xl text-${color}-600 mb-1`}>
             {number === '911' && <AlertTriangle size={32} />}
@@ -19,7 +20,7 @@ const EmergencyButton = ({ title, number, color }) => (
     </a>
 );
 
-// --- 2. HotlineCard Component (UPDATED to accept 'navigate' function) ---
+// --- 2. HotlineCard Component (UPDATED: duration-150 -> duration-300 on buttons) ---
 const HotlineCard = ({ title, number, description, tags, color, navigate }) => (
     <div className={`w-full lg:w-1/2 p-2`}> 
         {/* RESET BG: Always use white background and simple border for all cards */}
@@ -55,27 +56,26 @@ const HotlineCard = ({ title, number, description, tags, color, navigate }) => (
             </div>
             
             <div className="flex space-x-4 mt-4">
-                {/* 1. Call Now Button (Remains an <a> tag using tel: protocol) */}
+                {/* 1. Call Now Button (UPDATED: duration-150 -> duration-300) */}
                 <a 
                     href={`tel:${number.replace(/\D/g, '')}`} // Clean number for dialer
-                    className="flex items-center space-x-1 p-2 rounded-lg border border-blue-400 text-blue-600 hover:bg-blue-50 transition duration-150 no-underline"
+                    className="flex items-center space-x-1 p-2 rounded-lg border border-blue-400 text-blue-600 hover:bg-blue-50 transition duration-300 no-underline"
                 >
                     <Phone size={16} /><span>Call Now</span>
                 </a>
 
-                {/* 2. Text Button (UPDATED to an <a> tag using sms: protocol) */}
-                {/* Note: Using 988 for Text for Domestic Violence as a placeholder since a specific number wasn't provided for that service's SMS */}
+                {/* 2. Text Button (UPDATED: duration-150 -> duration-300) */}
                 <a 
                     href={`sms:${number.replace(/\D/g, '')}`} // Use sms: protocol
-                    className="flex items-center space-x-1 p-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition duration-150 no-underline"
+                    className="flex items-center space-x-1 p-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition duration-300 no-underline"
                 >
                     <MessageSquare size={16} /><span>Text</span>
                 </a>
 
-                {/* 3. Chat Button (UPDATED to use navigate to /ChatPage) */}
+                {/* 3. Chat Button (UPDATED: duration-150 -> duration-300) */}
                 <button 
                     onClick={() => navigate('/ChatPage')} // Navigate to the chatbot route
-                    className="flex items-center space-x-1 p-2 rounded-lg border border-green-400 text-green-600 hover:bg-green-50 transition duration-150"
+                    className="flex items-center space-x-1 p-2 rounded-lg border border-green-400 text-green-600 hover:bg-green-50 transition duration-300"
                 >
                     <MessageCircle size={16} /><span>Chat</span>
                 </button>
@@ -83,7 +83,7 @@ const HotlineCard = ({ title, number, description, tags, color, navigate }) => (
         </div>
     </div>
 );
-// --- 3. OnlineResourceCard Component (No changes needed here for this request) ---
+// --- 3. OnlineResourceCard Component (UPDATED: duration-150 -> duration-300) ---
 const OnlineResourceCard = ({ title, description, icon, color, siteUrl }) => ( 
     <div className="flex flex-col items-center text-center p-4 m-2 w-[220px] bg-white rounded-lg shadow-md border border-gray-200">
         <div className={`p-2 mb-2 rounded-full bg-white border-2 border-${color}-100 w-10 h-10 flex items-center justify-center`}>
@@ -101,14 +101,15 @@ const OnlineResourceCard = ({ title, description, icon, color, siteUrl }) => (
             href={siteUrl} 
             target="_blank" 
             rel="noopener noreferrer" 
-            className="flex items-center justify-center w-full py-2 text-sm text-white bg-green-500 rounded-full hover:bg-green-600 transition duration-150 cursor-pointer"
+            // CHANGED: duration-150 -> duration-300
+            className="flex items-center justify-center w-full py-2 text-sm text-white bg-green-500 rounded-full hover:bg-green-600 transition duration-300 cursor-pointer"
         >
             Visit Site
         </a>
     </div>
 );
 
-// --- 4. Main CallAway Component (UPDATED to use useNavigate) ---
+// --- 4. Main CallAway Component (UPDATED: No functional change, but shows the new H1) ---
 const CallAway = () => {
     const navigate = useNavigate();
 
@@ -116,7 +117,7 @@ const CallAway = () => {
         <div className="max-w-7xl mx-auto py-10 px-4">
             
             <header className="text-center mb-12">
-                <h1 className="text-3xl font-light text-gray-800 tracking-widest uppercase">
+                <h1 className="text-5xl font-semibold text-[#000459] mb-2">
                     Help is just a Call Away
                 </h1>
                 <p className="text-gray-600 mt-2 italic">
@@ -192,7 +193,7 @@ const CallAway = () => {
                         siteUrl="https://pmc.ncbi.nlm.nih.gov/articles/PMC9292033/" 
                     />
                     <OnlineResourceCard 
-                        title="Crisis Text Line" 
+                        title="Crisis Text Line for Life Prevention " 
                         description="Text HOME to 741741 anytime, anywhere in the US." 
                         icon="/images/img6.png" 
                         color="red" 

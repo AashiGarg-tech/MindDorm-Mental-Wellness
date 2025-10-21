@@ -180,7 +180,7 @@ const SupportPage = () => {
             <section className="mb-16">
                 <h2 className="text-2xl font-semibold text-gray-800 text-center mb-8 flex items-center justify-center">
                     {/* MEET YOUR GUIDING LIGHTS ICON (img20.jpg) */}
-                    <img src="/images/img20.jpg" alt="Guiding Lights Icon" className="w-6 h-6 mr-2 object-contain" />
+                    
                     Meet Your Guiding Lights
                 </h2>
                 <div className="flex justify-center space-x-4 mb-8">
