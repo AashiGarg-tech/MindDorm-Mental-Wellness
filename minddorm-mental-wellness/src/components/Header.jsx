@@ -84,7 +84,7 @@ const Header = () => {
         {/* Logo/Brand Name */}
         <div className="flex items-center space-x-2 text-blue-600 font-semibold text-lg ml-4">
           <Smile className="w-6 h-6" />
-          <Link to="/" className="hover:text-blue-800 transition-colors">BetterX</Link>
+          <Link to="/HomePage" className="hover:text-blue-800 transition-colors">BetterX</Link>
         </div>
 
         {/* Navigation Links */}

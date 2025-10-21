@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { Smile, Meh, Frown, CloudRain, Moon } from "lucide-react";
+import { Smile, Meh, Frown, CloudRain, Moon, Menu, X } from "lucide-react";
+import { Link } from "react-router-dom";
 
 const TrackMoodPage = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [selectedMood, setSelectedMood] = useState(null);
   const [note, setNote] = useState("");
 

@@ -203,7 +203,7 @@ const HomePage = () => {
           </section>
           
           {/* Footer */}
-          <footer className="text-center text-lg text-white pb-8">
+          <footer className="text-center mt-10 text-sm text-white pb-8">
             Don't worry Be happy
           </footer>
         </div>
