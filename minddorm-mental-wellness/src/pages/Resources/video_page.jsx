@@ -6,35 +6,35 @@ export default function VideoPage() {
   const videos = [
     {
       title: "Full Self Healing Meditation - OM SHANTI",
-      views: "2.8M views",
+      views: "26M views",
       time: "15:40",
       desc: "This 15-minute basic meditation video is ideal for inner peace and calm.",
       thumb: "https://i.ytimg.com/vi/abc123/default.jpg",
-      link: "https://www.youtube.com/watch?v=Jv_MZQkswPQ",
+      link: "https://www.youtube.com/watch?v=YWDRFZFCrGE",
     },
     {
       title: "Morning Surya Namaskar Meditation",
-      views: "803K views",
-      time: "22:22",
+      views: "10M views",
+      time: "27:22",
       desc: "Practice the 12 postures of Surya Namaskar with sacred Vedic chants.",
       thumb: "https://i.ytimg.com/vi/XYZ456/default.jpg",
-      link: "https://www.youtube.com/watch?v=QGHJ9pWzuLk",
+      link: "https://www.youtube.com/watch?v=7s0E8ecWncM",
     },
     {
       title: "Progressive Muscle Relaxation",
-      views: "3.9M views",
-      time: "15:53",
+      views: "4M views",
+      time: "15:52",
       desc: "Learn this evidence-based technique to release physical tension and stress.",
       thumb: "https://i.ytimg.com/vi/GHI789/default.jpg",
-      link: "https://www.youtube.com/watch?v=1ZrE8GJ7v7s",
+      link: "https://www.youtube.com/watch?v=86HUcX8ZtAk",
     },
     {
       title: "10-Minute Gayatri Mantra for Mind & Soul",
-      views: "3M views",
+      views: "3.1M views",
       time: "10:50",
       desc: "Chanting Gayatri Mantra regularly can establish and stabilize the mind.",
       thumb: "https://i.ytimg.com/vi/DEF012/default.jpg",
-      link: "https://www.youtube.com/watch?v=29CrZ8KcIks",
+      link: "https://www.youtube.com/watch?v=8lxDnvAH4tQ",
     },
     {
       title: "Exam Success Meditation",
@@ -42,15 +42,15 @@ export default function VideoPage() {
       time: "10:01",
       desc: "Quick breathing techniques to calm pre-exam nerves.",
       thumb: "https://i.ytimg.com/vi/PQR678/default.jpg",
-      link: "https://www.youtube.com/watch?v=DaGpS8VH7yQ",
+      link: "https://www.youtube.com/watch?v=AtF0T2fPvbI",
     },
     {
       title: "10-Minute Morning Yoga for Mental Clarity",
-      views: "68K views",
-      time: "10:01",
+      views: "69K views",
+      time: "12:01",
       desc: "Start your day with gentle movements to center your mind and body.",
       thumb: "https://i.ytimg.com/vi/STU901/default.jpg",
-      link: "https://www.youtube.com/watch?v=8GQK4e2mDqg",
+      link: "https://youtu.be/WrM12NYA7wg",
     },
   ];
 
@@ -97,4 +97,5 @@ export default function VideoPage() {
     </div>
   );
 }
+
 
