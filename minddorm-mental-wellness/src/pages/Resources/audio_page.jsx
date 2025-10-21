@@ -82,3 +82,16 @@ export default function AudioPage() {
     </div>
   );
 }
+
+import React from "react";
+import ResourcesNav from "../../components/ResourcesNav";
+
+export default function AudioPage() {
+  return (
+    <div className="min-h-screen bg-gray-50 p-6">
+      <ResourcesNav />
+      <h1 className="text-3xl font-bold text-purple-700 mb-4">Audios</h1>
+      {/* Your audio content */}
+    </div>
+  );
+}
