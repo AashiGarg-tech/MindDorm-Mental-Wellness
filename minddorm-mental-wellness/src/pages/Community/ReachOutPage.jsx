@@ -47,22 +47,41 @@ const ReachOutPage = () => {
         <CommunityHeader activeTab="ReachOut" />
 
         <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-200">
-          <div className="flex items-center justify-between mb-8">
-            <h2 className="text-2xl font-bold text-[#2B5A7A]">Reach Out & Be Heard</h2>
-            <div className="w-16 h-16">
-              <span className="text-4xl">💬</span>
+          <div className="flex items-center justify-between mb-10 relative z-10">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center">
+                <img src="/reach-out.png" alt="Reach Out" className="w-20 h-20 object-contain" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-[#2B5A7A]">Reach Out & Be Heard</h2>
+                <p className="text-sm text-gray-500">A supportive environment for sharing experiences</p>
+              </div>
             </div>
+          </div>
+
+          {/* Support Resources */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
+            {[
+              { title: "Share Experiences", desc: "Express your thoughts" },
+              { title: "Community Support", desc: "Connect with others" },
+              { title: "Professional Resources", desc: "Access guidance" }
+            ].map((action, index) => (
+              <div key={index} className="bg-[#EDF3F8] p-4 rounded-xl">
+                <h3 className="font-semibold text-[#2B5A7A] mb-1">{action.title}</h3>
+                <p className="text-sm text-slate-600">{action.desc}</p>
+              </div>
+            ))}
           </div>
 
           <div className="space-y-6">
             {posts.map((post) => (
               <div
                 key={post.id}
-                className={`rounded-2xl p-5 bg-[#EDF3F8] relative ${
+                className={`rounded-2xl p-5 relative border border-slate-100 ${
                   post.isResponse ? 'ml-10 border-l-4 border-[#B5D8EB] pl-4' : ''
                 }`}
               >
-                <div className="flex items-center gap-3 mb-2">
+                <div className="flex items-center gap-3 mb-3">
                   <img
                     src={post.avatar}
                     alt={post.user}
@@ -76,7 +95,7 @@ const ReachOutPage = () => {
 
                 <p className="text-sm text-slate-700 mb-3">{post.text}</p>
 
-                <div className="flex items-center gap-4 mt-1">
+                <div className="flex items-center gap-4 mt-3">
                   <button
                     onClick={() => handleLike(post.id)}
                     className={`flex items-center gap-2 ${
@@ -99,7 +118,7 @@ const ReachOutPage = () => {
           {/* Message Input */}
           <div className="mt-10 pt-6 border-t border-slate-200">
             <label className="block text-sm font-medium text-[#2B5A7A] mb-2">
-              Share what’s on your mind
+              Share what's on your mind
             </label>
             <div className="flex items-center gap-3 bg-slate-50 rounded-full px-5 py-3 border border-slate-200">
               <input

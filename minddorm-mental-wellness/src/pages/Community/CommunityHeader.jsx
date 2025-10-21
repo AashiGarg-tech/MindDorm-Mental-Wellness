@@ -16,14 +16,14 @@ const CommunityHeader = ({ activeTab }) => {
       {/* Header */}
       <div className="flex flex-col sm:flex-row items-start justify-between mb-8">
         <div>
-          <h1 className="text-3xl lg:text-4xl font-bold text-[#1B4B6B] mb-1">MindDorm</h1>
-          <h2 className="text-2xl lg:text-3xl font-bold text-[#2B5A7A]">Community</h2>
+          <h1 className="text-5xl font-semibold text-[#000459] mb-2">BetterX</h1>
+          <h2 className="text-2xl lg:text-3xl font-semibold text-[#000459]">Community</h2>
         </div>
         <div className="text-right mt-4 sm:mt-0">
           <div className="relative">
               <img src="#" alt="AI Assistant" className="w-40 md:w-40 relative z-10" />
         </div>
-          <p className="text-sm font-semibold text-[#2B5A7A]">MindDorm</p>
+          <p className="text-sm font-semibold text-[#2B5A7A]">BetterX</p>
           <p className="text-xs text-slate-600">● xxxx members</p>
         </div>
       </div>

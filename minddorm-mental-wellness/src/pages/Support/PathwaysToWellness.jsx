@@ -51,10 +51,10 @@ const PathwaysToWellness = () => {
 
     return (
         // Re-using the gradient background setup from the CallAway page for consistency
-        <div className="min-h-screen py-10 font-sans bg-gradient-to-b from-blue-200 via-blue-100 to-white">
+        <div className="min-h-screen py-10 font-sans bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB]">
             {/* Main Title Section */}
             <header className="text-center mb-12">
-                <h1 className={`text-3xl font-light text-blue-900 tracking-widest uppercase ${headerFontClass}`}>
+                <h1 className="text-5xl font-semibold text-[#000459] mb-2">
                     Pathways To Wellness
                 </h1>
                 <p className="text-gray-600 mt-2 italic">

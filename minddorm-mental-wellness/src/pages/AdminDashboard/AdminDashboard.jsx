@@ -9,13 +9,13 @@ import EngagementCard from './EngagementCard'; // For the bottom section
 
 const AdminDashboard = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB]">
+    <div className="min-h-screen bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] font-sans">
       {/* 1. Header/Navigation (You'd implement this) */}
       {/* <Header />  */}
 
       <div className="p-8 max-w-7xl mx-auto">
         {/* Admin Dashboard Title */}
-        <h1 className="text-5xl font-bold text-[#000459]">Admin Dashboard</h1>
+        <h1 className="text-5xl font-semibold text-[#000459]">Admin Dashboard</h1>
         <p className="text-gray-500 mb-6">Monitor platform health and user engagement</p>
 
         {/* 2. STAT CARDS SECTION (Flexbox Layout) */}

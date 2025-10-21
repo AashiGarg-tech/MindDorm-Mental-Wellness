@@ -73,30 +73,30 @@ const Header = () => {
     { name: 'Chat', href: '/ChatPage' },
     { name: 'Community', href: '/AnnouncementsPage' },
     { name: 'Resources', href: '/ArticlesPage' },
-    { name: 'Track Mood', href: '#' },
+    { name: 'Track Mood', href: '/TrackMoodPage' },
     { name: 'Dashboard', href: '/WellnessDashboard' },
   ];
 
   return (
-    <header className="bg-white border-b border-gray-200 shadow-sm">
-      <div className="max-w-screen-md mx-auto px-4 py-3 flex justify-between items-center">
+    <header className="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
+      <div className="container max-w-7xl mx-auto px-6 flex justify-between items-center h-14">
 
         {/* Logo/Brand Name */}
-        <div className="flex items-center space-x-2 text-blue-600 font-semibold text-lg">
+        <div className="flex items-center space-x-2 text-blue-600 font-semibold text-lg ml-4">
           <Smile className="w-6 h-6" />
-          <Link to="/" className="hover:text-blue-800 transition">BetterX</Link>
+          <Link to="/" className="hover:text-blue-800 transition-colors">BetterX</Link>
         </div>
 
         {/* Navigation Links */}
-        <nav className="hidden md:flex space-x-4 text-sm">
+        <nav className="hidden md:flex items-center space-x-6">
           {navItems.map((item) => (
             <Link
               key={item.name}
               to={item.href}
-              className={`text-gray-600 hover:text-blue-500 transition duration-150 ${
+              className={`text-sm px-2 py-4 text-gray-600 hover:text-blue-500 transition-colors ${
                 location.pathname === item.href
-                  ? 'font-bold text-blue-700 border-b-2 border-blue-700'
-                  : ''
+                  ? 'font-semibold text-blue-700 border-b-2 border-blue-700'
+                  : 'border-b-2 border-transparent hover:border-blue-200'
               }`}
             >
               {item.name}

@@ -54,9 +54,10 @@ export default function VideosPage() {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-semibold text-center text-blue-900 mb-2">
-        Campus Mental Health Resources
+    <div className="min-h-screen bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] font-sans">
+      <div className="max-w-6xl mx-auto px-4 py-10">
+        <h1 className="text-5xl font-semibold text-[#000459] mb-2 text-center">
+          Campus Mental Health Resources
       </h1>
       <p className="text-center text-gray-600 mb-8">
         Watch mindfulness and relaxation videos designed to help you de-stress and focus.
@@ -91,6 +92,7 @@ export default function VideosPage() {
       </div>
 
       <SupportOptions />
+      </div>
     </div>
   );
 }

@@ -55,15 +55,17 @@ const AnnouncementsPage = () => {
 
         {/* Content Area */}
         <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-200 min-h-96">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-2xl font-bold text-[#2B5A7A]">Announcements</h2>
-            <div className="w-20 h-20">
-              <img
-                src="https://via.placeholder.com/80"
-                alt="Announcements"
-                className="rounded-full object-cover"
-              />
+          <div className="flex items-center justify-between mb-10 relative z-10">
+            <div className="flex items-center gap-4">
+              <div className="w-20 h-20 rounded-full flex items-center justify-center">
+                <img src="/announcements.png" alt="Announcements" className="w-20 h-20 object-contain" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-[#2B5A7A]">Announcements</h2>
+                <p className="text-sm text-gray-500">Stay updated with community events and news</p>
+              </div>
             </div>
+        
           </div>
 
           <div className="space-y-6">

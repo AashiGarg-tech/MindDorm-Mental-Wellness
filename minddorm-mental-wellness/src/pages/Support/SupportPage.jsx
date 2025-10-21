@@ -62,11 +62,12 @@ const SupportPage = ({ onNavigate, currentPage }) => { // ACCEPTS currentPage PR
     };
 
     return (
-        <div className="max-w-7xl mx-auto py-10 px-4">
+        <div className="min-h-screen bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] font-sans">
+            <div className="max-w-7xl mx-auto py-10 px-4">
             
             {/* Header / Cylinder Navigation */}
             <header className="text-center mb-12 max-w-4xl mx-auto">
-                <h1 className="text-3xl font-light text-blue-900 tracking-widest uppercase mb-2">
+                <h1 className="text-5xl font-semibold text-[#000459] mb-2">
                     Your Path To Inner Calm Starts Here
                 </h1>
                 <p className="text-gray-600 mb-6">
@@ -212,6 +213,7 @@ const SupportPage = ({ onNavigate, currentPage }) => { // ACCEPTS currentPage PR
             <footer className="text-center mt-10 text-gray-600 text-sm">
                 <p>Don't worry Be happy</p>
             </footer>
+            </div>
         </div>
     );
 };

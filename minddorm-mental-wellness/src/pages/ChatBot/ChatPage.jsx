@@ -47,40 +47,6 @@ const ChatPage = () => {
 
   return (
     <div className="min-h-screen font-sans bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB]">
-      {/* Header */}
-      <header className="bg-[#B5D8EB] border-b border-[#D6E6F2]">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center">
-              <span className="text-2xl">🏠</span>
-            </div>
-            <h1 className="text-2xl font-bold text-[#000459]">MindDorm AI Buddy</h1>
-            <div className="w-10 h-10 bg-white rounded-full flex items-center justify-center ml-2">
-              <span className="text-xl">😊</span>
-            </div>
-          </div>
-          
-          <nav className="hidden md:flex items-center gap-6 text-[#000459] font-medium">
-            <a href="/" className="hover:text-[#2B3990]">Home</a>
-            <a href="/support" className="hover:text-[#2B3990]">Support</a>
-            <a href="/chat" className="text-[#2B3990]">Chat</a>
-            <a href="/community" className="hover:text-[#2B3990]">Community</a>
-            <a href="/resources" className="hover:text-[#2B3990]">Resources</a>
-            <a href="/track-mood" className="hover:text-[#2B3990]">Track Mood</a>
-            <a href="/dashboard" className="hover:text-[#2B3990]">Dashboard</a>
-          </nav>
-
-          <div className="flex items-center gap-3">
-            <button className="bg-[#A8E6CF] text-[#000459] px-4 py-2 rounded-full font-semibold text-sm hover:bg-[#98D6BF] transition">
-              Create Space
-            </button>
-            <button className="bg-[#2B3990] text-white px-5 py-2 rounded-full font-semibold text-sm hover:bg-[#1e2870] transition">
-              Get Started
-            </button>
-          </div>
-        </div>
-      </header>
-
       {/* Main Content */}
       <div className="container mx-auto px-4 py-8">
         {/* Mood Buttons */}

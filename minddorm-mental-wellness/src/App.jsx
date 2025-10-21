@@ -101,12 +101,14 @@ import CommunityHeader from "./pages/Community/CommunityHeader";
 
 import ChatPage from "./pages/ChatBot/ChatPage";
 
+import TrackMoodPage from "./pages/TrackMood/TrackMoodPage";
+
 const AppContent = () => {
   const location = useLocation();
   const hideHeader = location.pathname === "/";
 
   return (
-    <div className="min-h-screen font-sans bg-gradient-to-b from-blue-200 via-blue-100 to-white">
+    <div className="min-h-screen font-sans bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB]">
       {!hideHeader && <Header />}
 
       <Routes>
@@ -126,6 +128,7 @@ const AppContent = () => {
         <Route path="/ArticlesPage" element={<ArticlesPage />} />
         <Route path="/AudioPage" element={<AudioPage />} />
         <Route path="/VideosPage" element={<VideosPage />} />
+        <Route path="/TrackMoodPage" element={<TrackMoodPage />} />
         <Route path="/WellnessDashboard" element={<WellnessDashboard />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />
         <Route path="*" element={<div className="text-center py-20 text-gray-600 text-xl">🚧 Page Not Found</div>} />

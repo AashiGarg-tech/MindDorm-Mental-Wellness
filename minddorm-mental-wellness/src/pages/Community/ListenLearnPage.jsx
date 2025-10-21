@@ -56,31 +56,52 @@ const ListenLearnPage = () => {
         <CommunityHeader activeTab="ListenLearnPage" />
 
         {/* Content Area */}
-        <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-200 min-h-96">
-          <div className="flex items-center justify-between mb-10">
-            <h2 className="text-2xl font-bold text-[#2B5A7A]">Listen & Learn</h2>
-            <div className="w-16 h-16">
-              <span className="text-4xl">💡</span>
+        <div className="bg-white rounded-2xl p-8 shadow-sm border border-slate-200 min-h-96 relative overflow-hidden">
+          <div className="flex items-center justify-between mb-10 relative z-10">
+            <div className="flex items-center gap-4">
+              <div className="w-16 h-16 rounded-full flex items-center justify-center">
+                <img src="/listen-learn.png" alt="Listen & Learn" className="w-15 h-15 object-contain" />
+              </div>
+              <div>
+                <h2 className="text-2xl font-bold text-[#2B5A7A]">Listen & Learn</h2>
+                <p className="text-sm text-gray-500">Share and discover stories of resilience</p>
+              </div>
             </div>
           </div>
 
-          <h3 className="text-lg font-semibold text-[#2B5A7A] mb-4">Shared Stories</h3>
+          <div className="flex items-center gap-3 mb-6 relative z-10">
+            <h3 className="text-lg font-semibold text-[#2B5A7A]">Shared Stories</h3>
+            <div className="flex -space-x-3">
+              <img src="/images/avatar-1.png" alt="Community Member" className="w-8 h-8 rounded-full border-2 border-white" />
+              <img src="/images/avatar-2.png" alt="Community Member" className="w-8 h-8 rounded-full border-2 border-white" />
+              <img src="/images/avatar-3.png" alt="Community Member" className="w-8 h-8 rounded-full border-2 border-white" />
+              <div className="w-8 h-8 rounded-full bg-[#E3F2FA] border-2 border-white flex items-center justify-center text-xs font-medium text-[#2B5A7A]">
+                +5
+              </div>
+            </div>
+          </div>
 
           <div className="space-y-6">
             {stories.map((story) => (
               <div
                 key={story.id}
-                className="bg-[#EDF3F8] rounded-2xl p-6 hover:shadow-md transition"
+                className="bg-gradient-to-b from-[#EDF3F8] to-white rounded-2xl p-6 hover:shadow-lg transition-all transform hover:scale-[1.01] border border-[#E3F2FA]/50"
               >
-                <div className="flex items-center gap-3 mb-2">
-                  <img
-                    src={story.avatar}
-                    alt={story.user}
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="relative">
+                    <img
+                      src={`/images/avatar-${story.id}.png`}
+                      alt={story.user}
+                      className="w-12 h-12 rounded-full object-cover border-2 border-white shadow-sm"
+                    />
+                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-400 rounded-full border-2 border-white"></div>
+                  </div>
                   <div>
                     <p className="font-bold text-sm text-[#2B5A7A]">{story.user}</p>
-                    <p className="text-xs text-slate-500">{story.timestamp}</p>
+                    <p className="text-xs text-slate-500 flex items-center gap-1">
+                      <span className="w-2 h-2 rounded-full bg-[#2B5A7A]/30"></span>
+                      {story.timestamp}
+                    </p>
                   </div>
                 </div>
 

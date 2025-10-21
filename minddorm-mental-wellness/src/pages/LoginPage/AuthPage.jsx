@@ -48,7 +48,7 @@ const AuthPage = () => {
   const buttonText = isLogin ? 'Login' : 'Create Account';
 
   return (
-    <div className="h-screen flex items-center justify-center bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] p-4">
+    <div className="h-screen flex items-center justify-center bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] font-sans p-4">
       
       {/* Main Container */}
       <div className="bg-white w-full max-w-5xl h-[90vh] rounded-2xl shadow-2xl overflow-hidden grid grid-cols-1 lg:grid-cols-2">
@@ -57,7 +57,7 @@ const AuthPage = () => {
             <div className="w-full max-w-sm">
               
               <div className="text-center mb-8">
-                <h1 className="text-5xl font-bold text-gray-700 pb-4">{title}</h1>
+                <h1 className="text-5xl font-semibold text-[#000459] pb-4">{title}</h1>
                 <p className="text-lg text-gray-500 mb-10">{callout}</p>
               </div>
 
@@ -110,7 +110,7 @@ const AuthPage = () => {
           {/* <div className="relative z-10 text-white">
             <div className="flex items-center text-xl font-bold space-x-2 mb-4">
                 <Leaf className="w-6 h-6" />
-                <span>MindDorm</span>
+                <span>BetterX</span>
             </div>
             <h2 className="text-3xl font-extrabold leading-tight">
               A space for your mind to rest and grow.
