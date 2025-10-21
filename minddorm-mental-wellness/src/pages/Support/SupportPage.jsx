@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 // Reusable component for the Expert Cards
 const ExpertCard = ({ name, title, experience, available, tags, avatar }) => (
@@ -34,32 +35,39 @@ const ExpertCard = ({ name, title, experience, available, tags, avatar }) => (
     </div>
 );
 
-// Main Home Page Component
-const SupportPage = ({ onNavigate, currentPage }) => { // ACCEPTS currentPage PROP
+// Main Support Page Component
+const SupportPage = () => {
+    // Hooks for React Router navigation and current path awareness
+    const navigate = useNavigate();
+    const location = useLocation();
 
     const expertsData = [
-        // Updated Avatars to use local images img16-19
         { name: "Dr. Mehul Joshi", title: "Healing Emotional Depths", experience: "8 Years of experience", available: "Tomorrow 3:00PM", tags: [{rating: 4.9}, {name: "CBT"}, {name: "Mindfulness"}, {name: "Student Issues"}], avatar: '/images/img16.jpg' },
         { name: "Dr. Sneha Reddy", title: "Anxiety and Depression", experience: "10 Years of experience", available: "Tomorrow 5:00PM", tags: [{rating: 4.9}, {name: "CBT"}, {name: "Mindfulness"}, {name: "Student Issues"}], avatar: '/images/img17.jpg' },
         { name: "Dr. Varun Johnson", title: "Stress Management", experience: "9 Years of experience", available: "Tomorrow 2:00PM", tags: [{rating: 4.7}, {name: "Stress"}, {name: "Academic Pressure"}, {name: "Life Coaching"}], avatar: '/images/img18.jpg' },
         { name: "Dr. Aparna Arora", title: "Trauma and PTSD", experience: "8 Years of experience", available: "Tomorrow 2:00PM", tags: [{rating: 4.9}, {name: "EMDR"}, {name: "Support-Groups"}, {name: "Trauma-Informed"}], avatar: '/images/img19.jpg' },
     ];
     
-    // Helper function to dynamically apply classes based on the active page
-    const getButtonClass = (targetPage) => {
-        const isActive = targetPage === currentPage;
-        // Conditional styles: Blue background/white text when active, otherwise gray text/transparent background
+    // Helper function to dynamically apply classes based on the active path
+    const getButtonClass = (targetPath) => {
+        // Check if the current path matches the target path (case-insensitive)
+        const isActive = location.pathname.toLowerCase() === targetPath.toLowerCase();
+        
         return isActive 
             ? "px-4 py-2 text-sm font-semibold rounded-full bg-blue-500 text-white transition shadow-lg"
             : "px-4 py-2 text-sm font-semibold text-gray-700 hover:text-blue-500 transition";
     };
 
     // Helper function for icon/image styling (applies color inversion when active)
-    const getIconClass = (targetPage) => {
-        const isActive = targetPage === currentPage;
-        // The filter inverts the colors of the image, making a dark image look white
+    const getIconClass = (targetPath) => {
+        const isActive = location.pathname.toLowerCase() === targetPath.toLowerCase();
         return isActive ? 'filter brightness-0 invert' : ''; 
     };
+
+    // Define the paths for the buttons
+    const PATH_HOME = '/HomePage';
+    const PATH_LIFELINE = '/lifeline';
+    const PATH_WELLNESS = '/find-wellness';
 
     return (
         <div className="min-h-screen bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] font-sans">
@@ -76,50 +84,51 @@ const SupportPage = ({ onNavigate, currentPage }) => { // ACCEPTS currentPage PR
                 
                 {/* CYLINDER NAVIGATION BLOCK */}
                 <div className="flex justify-center items-center p-2 rounded-full bg-white shadow-xl max-w-md mx-auto border-2 border-gray-100">
+                    
                     {/* EXPLORE GUIDES (Home) BUTTON */}
                     <button 
-                        onClick={() => onNavigate('home')} 
-                        className={`${getButtonClass('home')} flex items-center`} // ADDED flex items-center
+                        onClick={() => navigate(PATH_HOME)} // Uses navigate('/HomePage')
+                        className={`${getButtonClass(PATH_HOME)} flex items-center`}
                     >
                         {/* ICON */}
                         <img 
-                            src="/images/img23.png" // NEW ICON IMG23.JPG
+                            src="/images/img23.png" 
                             alt="Guides Icon" 
-                            className={`w-4 h-4 mr-1 object-contain ${getIconClass('home')}`} 
+                            className={`w-4 h-4 mr-1 object-contain ${getIconClass(PATH_HOME)}`} 
                         />
                         Explore Guides
                     </button>
                     
-                    {/* LIFELINE (Emergency) BUTTON */}
+                    {/* LIFELINE (CallAway.jsx) BUTTON */}
                     <button 
-                        onClick={() => onNavigate('emergency')} 
-                        className={`${getButtonClass('emergency')} mx-4 flex items-center`}
+                        onClick={() => navigate(PATH_LIFELINE)} // Uses navigate('/lifeline')
+                        className={`${getButtonClass(PATH_LIFELINE)} mx-4 flex items-center`}
                     >
                         {/* ICON */}
                         <img 
                             src="/images/img21.jpg" 
                             alt="Lifeline Icon" 
-                            className={`w-4 h-4 mr-1 object-contain ${getIconClass('emergency')}`} 
+                            className={`w-4 h-4 mr-1 object-contain ${getIconClass(PATH_LIFELINE)}`} 
                         />
                         Lifeline
                     </button>
                     
-                    {/* FIND WELLNESS (Wellness) BUTTON */}
+                    {/* FIND WELLNESS (PathwaysToWellness.jsx) BUTTON */}
                     <button 
-                        onClick={() => onNavigate('wellness')} 
-                        className={`${getButtonClass('wellness')} flex items-center`}
+                        onClick={() => navigate(PATH_WELLNESS)} // Uses navigate('/find-wellness')
+                        className={`${getButtonClass(PATH_WELLNESS)} flex items-center`}
                     >
                         {/* ICON */}
                         <img 
                             src="/images/img22.jpg" 
                             alt="Find Wellness Icon" 
-                            className={`w-4 h-4 mr-1 object-contain ${getIconClass('wellness')}`}
+                            className={`w-4 h-4 mr-1 object-contain ${getIconClass(PATH_WELLNESS)}`}
                         />
                         Find Wellness
                     </button>
                 </div>
             </header>
-
+            
             {/* How to Get Started Section */}
             <section className="text-center mb-16 relative bg-white p-8 rounded-xl shadow-lg border border-gray-100 max-w-6xl mx-auto">
                 <h2 className="text-2xl font-semibold text-gray-800 mb-8">How to get started</h2>
@@ -150,7 +159,7 @@ const SupportPage = ({ onNavigate, currentPage }) => { // ACCEPTS currentPage PR
                     </div>
                     {/* Step 2 */}
                     <div className="flex-1 w-full p-4">
-                         <div className="flex justify-center items-center mb-4">
+                           <div className="flex justify-center items-center mb-4">
                             <img src="/images/img11.jpg" alt="Connect with Counselor" className="w-20 h-20 object-contain" />
                         </div>
                         <p className="font-semibold text-gray-800">2. Connect with your counselor</p>

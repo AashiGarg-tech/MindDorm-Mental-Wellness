@@ -1,8 +1,9 @@
 import React from 'react';
-// Make sure 'Phone' is imported here from lucide-react
+// Import necessary hooks for navigation
+import { useNavigate } from 'react-router-dom'; 
 import { Phone, MessageSquare, Briefcase, Lock, AlertTriangle, LifeBuoy, Heart, Twitter, MessageCircle, Info } from 'lucide-react'; 
 
-// --- 1. EmergencyButton Component (No changes needed here for this request) ---
+// --- 1. EmergencyButton Component (No changes needed here) ---
 const EmergencyButton = ({ title, number, color }) => (
     <a 
         href={`tel:${number}`} 
@@ -18,8 +19,8 @@ const EmergencyButton = ({ title, number, color }) => (
     </a>
 );
 
-// --- 2. HotlineCard Component (MODIFIED for Icon and Background) ---
-const HotlineCard = ({ title, number, description, tags, color, children }) => (
+// --- 2. HotlineCard Component (UPDATED to accept 'navigate' function) ---
+const HotlineCard = ({ title, number, description, tags, color, navigate }) => (
     <div className={`w-full lg:w-1/2 p-2`}> 
         {/* RESET BG: Always use white background and simple border for all cards */}
         <div className={`p-6 rounded-xl shadow-lg bg-white border border-gray-200`}> 
@@ -39,7 +40,7 @@ const HotlineCard = ({ title, number, description, tags, color, children }) => (
                 <div className="flex space-x-2">
                     {/* TAGS: Always use standard white/light backgrounds for the top tags */}
                     <span className={`text-xs px-2 py-0.5 rounded-full bg-green-100 text-green-700`}>Text</span> 
-                    <span className={`text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700`}>Chat</span>   
+                    <span className={`text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700`}>Chat</span>  
                 </div>
             </div>
             
@@ -54,7 +55,30 @@ const HotlineCard = ({ title, number, description, tags, color, children }) => (
             </div>
             
             <div className="flex space-x-4 mt-4">
-                {children}
+                {/* 1. Call Now Button (Remains an <a> tag using tel: protocol) */}
+                <a 
+                    href={`tel:${number.replace(/\D/g, '')}`} // Clean number for dialer
+                    className="flex items-center space-x-1 p-2 rounded-lg border border-blue-400 text-blue-600 hover:bg-blue-50 transition duration-150 no-underline"
+                >
+                    <Phone size={16} /><span>Call Now</span>
+                </a>
+
+                {/* 2. Text Button (UPDATED to an <a> tag using sms: protocol) */}
+                {/* Note: Using 988 for Text for Domestic Violence as a placeholder since a specific number wasn't provided for that service's SMS */}
+                <a 
+                    href={`sms:${number.replace(/\D/g, '')}`} // Use sms: protocol
+                    className="flex items-center space-x-1 p-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition duration-150 no-underline"
+                >
+                    <MessageSquare size={16} /><span>Text</span>
+                </a>
+
+                {/* 3. Chat Button (UPDATED to use navigate to /ChatPage) */}
+                <button 
+                    onClick={() => navigate('/ChatPage')} // Navigate to the chatbot route
+                    className="flex items-center space-x-1 p-2 rounded-lg border border-green-400 text-green-600 hover:bg-green-50 transition duration-150"
+                >
+                    <MessageCircle size={16} /><span>Chat</span>
+                </button>
             </div>
         </div>
     </div>
@@ -84,8 +108,10 @@ const OnlineResourceCard = ({ title, description, icon, color, siteUrl }) => (
     </div>
 );
 
-// --- 4. Main CallAway Component (MODIFIED for 911 card color) ---
+// --- 4. Main CallAway Component (UPDATED to use useNavigate) ---
 const CallAway = () => {
+    const navigate = useNavigate();
+
     return (
         <div className="max-w-7xl mx-auto py-10 px-4">
             
@@ -105,11 +131,11 @@ const CallAway = () => {
                 <div className="flex justify-center space-x-4">
                     <EmergencyButton title="Life-threatening Emergency" number="911" color="red" />
                     <EmergencyButton title="Suicide Prevention Lifeline" number="988" color="yellow" />
-                    <EmergencyButton title="741741" number="741741" color="red" /> {/* MODIFIED: Title to match image */}
+                    <EmergencyButton title="Crisis Text Line" number="741741" color="red" />
                 </div>
             </section>
 
-            {/* Contact Hotlines (Data for color change) */}
+            {/* Contact Hotlines (Passing the navigate function) */}
             <section className="mb-12">
                 <h2 className="text-2xl font-semibold text-gray-800 text-center mb-8">
                     Contact Hotlines
@@ -121,35 +147,17 @@ const CallAway = () => {
                         description="24/7 confidential support for people in distress and those who care for them."
                         tags={['Call now', 'Confidential', '24/7', 'Chat', 'TTY/TDD']}
                         color="blue"
-                    >
-                        <a href="tel:988" className="flex items-center space-x-1 p-2 rounded-lg border border-blue-400 text-blue-600 hover:bg-blue-50 transition duration-150">
-                            <Phone size={16} /><span>Call Now</span>
-                        </a>
-                        <a href="sms:988" className="flex items-center space-x-1 p-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition duration-150">
-                            <MessageSquare size={16} /><span>Text</span>
-                        </a>
-                        <button className="flex items-center space-x-1 p-2 rounded-lg border border-green-400 text-green-600 hover:bg-green-50 transition duration-150">
-                            <MessageCircle size={16} /><span>Chat</span>
-                        </button>
-                    </HotlineCard>
+                        navigate={navigate} // Pass navigate to the card
+                    />
 
                     <HotlineCard 
                         title="Emergency Services" 
                         number="911" 
                         description="Immediate response for any immediate emergency, medical, fire, or police related issue."
                         tags={['Immediate response', 'Medical', 'Safety', 'Police']}
-                        color="red" // <-- THIS CONTROLS THE BACKGROUND COLOR FOR THE 911 CARD
-                    >
-                        <a href="tel:911" className="flex items-center space-x-1 p-2 rounded-lg border border-blue-400 text-blue-600 hover:bg-blue-50 transition duration-150">
-                            <Phone size={16} /><span>Call Now</span>
-                        </a>
-                        <a href="sms:911" className="flex items-center space-x-1 p-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition duration-150">
-                            <MessageSquare size={16} /><span>Text</span>
-                        </a>
-                        <button className="flex items-center space-x-1 p-2 rounded-lg border border-green-400 text-green-600 hover:bg-green-50 transition duration-150">
-                            <MessageCircle size={16} /><span>Chat</span>
-                        </button>
-                    </HotlineCard>
+                        color="red"
+                        navigate={navigate} // Pass navigate to the card
+                    />
                     
                     <HotlineCard 
                         title="National Domestic Violence Hotline" 
@@ -157,17 +165,8 @@ const CallAway = () => {
                         description="Provides confidential support and resources to survivors of domestic violence."
                         tags={['Safety planning', 'Confidential', '24/7', 'Multilingual']}
                         color="indigo"
-                    >
-                        <a href="tel:1-800-799-7233" className="flex items-center space-x-1 p-2 rounded-lg border border-blue-400 text-blue-600 hover:bg-blue-50 transition duration-150">
-                            <Phone size={16} /><span>Call Now</span>
-                        </a>
-                        <a href="sms:22522" className="flex items-center space-x-1 p-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition duration-150">
-                            <MessageSquare size={16} /><span>Text</span>
-                        </a>
-                        <button className="flex items-center space-x-1 p-2 rounded-lg border border-green-400 text-green-600 hover:bg-green-50 transition duration-150">
-                            <MessageCircle size={16} /><span>Chat</span>
-                        </button>
-                    </HotlineCard>
+                        navigate={navigate} // Pass navigate to the card
+                    />
 
                     <HotlineCard 
                         title="Campus Safety" 
@@ -175,18 +174,8 @@ const CallAway = () => {
                         description="Immediate response for non-life-threatening campus safety issues and escort services."
                         tags={['Campus safety', 'Safety alerts', 'Escort program']}
                         color="yellow"
-                    >
-                        <a href="tel:5559117233" className="flex items-center space-x-1 p-2 rounded-lg border border-blue-400 text-blue-600 hover:bg-blue-50 transition duration-150">
-                            <Phone size={16} /><span>Call Now</span>
-                        </a>
-                        <a href="sms:5559117233" className="flex items-center space-x-1 p-2 rounded-lg border border-gray-300 text-gray-600 hover:bg-gray-50 transition duration-150">
-                            <MessageSquare size={16} /><span>Text</span>
-                        </a>
-                        <button className="flex items-center space-x-1 p-2 rounded-lg border border-green-400 text-green-600 hover:bg-green-50 transition duration-150">
-                            <MessageCircle size={16} /><span>Chat</span>
-                        </button>
-                    </HotlineCard>
-
+                        navigate={navigate} // Pass navigate to the card
+                    />
                 </div>
             </section>
 
@@ -243,9 +232,9 @@ const CallAway = () => {
                     </ul>
                 </div>
 
-                 <div className="w-full lg:w-[48%] bg-blue-50 p-6 rounded-xl shadow-md border border-blue-100">
+                <div className="w-full lg:w-[48%] bg-blue-50 p-6 rounded-xl shadow-md border border-blue-100">
                     <h3 className="flex items-center text-xl font-semibold text-gray-800 mb-4">
-                         <img src="/images/img9.jpg" alt="Lock Icon" className="w-6 h-6 mr-2" />
+                        <img src="/images/img9.jpg" alt="Lock Icon" className="w-6 h-6 mr-2" />
                         Your Privacy
                     </h3>
                     {/* ADD list-disc and text-green-500 for marker color */}

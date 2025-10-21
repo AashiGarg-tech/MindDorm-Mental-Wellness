@@ -96,9 +96,11 @@
 //     </div>
 //   );
 // }
-
+import React from "react";
 import { Clock, Star } from "lucide-react";
 import SupportOptions from "./support_condition";
+import ResourcesNav from "../../components/ResourcesNav";
+
 
 const ArticlesPage = () => {
   const articles = [
@@ -155,6 +157,7 @@ const ArticlesPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] font-sans">
       <div className="max-w-6xl mx-auto px-4 py-10">
+        <ResourcesNav />
         <h1 className="text-5xl font-semibold text-[#000459] mb-2 text-center">
           Campus Mental Health Resources
       </h1>
@@ -208,3 +211,6 @@ const ArticlesPage = () => {
 };
 
 export default ArticlesPage;
+
+
+

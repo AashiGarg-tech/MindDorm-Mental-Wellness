@@ -77,7 +77,7 @@ const ReachOutPage = () => {
             {posts.map((post) => (
               <div
                 key={post.id}
-                className={`rounded-2xl p-5 relative border border-slate-100 ${
+                className={`rounded-2xl p-5 bg-[#EDF3F8] relative ${
                   post.isResponse ? 'ml-10 border-l-4 border-[#B5D8EB] pl-4' : ''
                 }`}
               >
