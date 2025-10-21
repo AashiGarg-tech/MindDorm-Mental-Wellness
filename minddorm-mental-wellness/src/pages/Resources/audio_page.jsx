@@ -1,7 +1,8 @@
 import React from "react";
 import { Music2, Clock, Play } from "lucide-react";
 import ResourcesNav from "../../components/ResourcesNav"; // 👈 Import your navigation bar
-import SupportOptions from "../../components/SupportOptions"; // 👈 if you have this component
+import SupportOptions from "./support_condition";
+ // 👈 if you have this component
 
 export default function AudioPage() {
   const audios = [
@@ -93,3 +94,4 @@ export default function AudioPage() {
     </div>
   );
 }
+
