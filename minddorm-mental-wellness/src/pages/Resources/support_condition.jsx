@@ -49,7 +49,6 @@ export default function SupportOptions() {
                 <p>Don't worry Be happy</p>
             </footer>
             </div>
-        </div>
   );
 }
 
