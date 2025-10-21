@@ -102,7 +102,8 @@ import ResourcesNav from "../../components/ResourcesNav";
 
 
 import { Clock, Star } from "lucide-react";
-import SupportOptions from "../../components/support_condition";
+import SupportOptions from "./support_condition";
+
 
 
 const ArticlesPage = () => {
@@ -211,5 +212,6 @@ const ArticlesPage = () => {
 };
 
 export default ArticlesPage;
+
 
 
