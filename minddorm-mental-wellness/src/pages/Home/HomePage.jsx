@@ -1,5 +1,5 @@
-// import React from 'react';
-// import { Link } from 'react-router-dom'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 const HomePage = () => {
   return (
@@ -28,12 +28,12 @@ const HomePage = () => {
               Start Your Journey
             </a>
 
-            <a
-              href="/Community"
+            <Link
+              to="/AnnouncementsPage"
               className="bg-[#F4F8FB] text-[#000459] px-6 py-2 rounded-full font-semibold border border-[#D6E6F2] hover:bg-blue-100 transition inline-flex items-center justify-center"
             >
               Join our community
-            </a>
+            </Link>
           </div>
 
           {/* Calm Track Section */}
@@ -67,9 +67,12 @@ const HomePage = () => {
         <div className="md:w-1/2 mt-8 md:mt-0 flex justify-center items-center pl-8">
           <div className="relative">
             {/* Chat Button */}
-            <button className="absolute top-1/3 -right-12 bg-white px-5 py-2 rounded-full text-sm text-slate-600 font-medium shadow-md border border-slate-300 whitespace-nowrap z-20 hover:bg-slate-50 hover:shadow-lg transition-all duration-300">
+            <Link 
+              to="/ChatPage"
+              className="absolute top-1/3 -right-12 bg-white px-5 py-2 rounded-full text-sm text-slate-600 font-medium shadow-md border border-slate-300 whitespace-nowrap z-20 hover:bg-slate-50 hover:shadow-lg transition-all duration-300"
+            >
               chat with AI
-            </button>
+            </Link>
             
             {/* AI Assistant Image with Celestial Glow */}
             <div className="relative">
@@ -92,7 +95,7 @@ const HomePage = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           
           {/* Session Booking */}
-          <div className="bg-[#F4F8FB] border border-[#D6E6F2] p-6 rounded-2xl">
+          <div className="bg-[#F4F8FB] border border-[#D6E6F2] p-6 rounded-2xl transform transition-transform duration-300 hover:scale-105 cursor-pointer shadow-sm hover:shadow-md">
             <h3 className="text-xl font-bold mb-2 text-[#2B3990] tracking-wide">
               SESSION BOOKING
             </h3>
@@ -103,7 +106,7 @@ const HomePage = () => {
           </div>
           
           {/* Self Tests */}
-          <div className="bg-[#F4F8FB] border border-[#D6E6F2] p-6 rounded-2xl">
+          <div className="bg-[#F4F8FB] border border-[#D6E6F2] p-6 rounded-2xl transform transition-transform duration-300 hover:scale-105 cursor-pointer shadow-sm hover:shadow-md">
             <h3 className="text-xl font-bold mb-2 text-[#2B3990] tracking-wide">
               SELF TESTS
             </h3>
@@ -114,7 +117,7 @@ const HomePage = () => {
           </div>
           
           {/* Resource Library */}
-          <div className="bg-[#F4F8FB] border border-[#D6E6F2] p-6 rounded-2xl">
+          <div className="bg-[#F4F8FB] border border-[#D6E6F2] p-6 rounded-2xl transform transition-transform duration-300 hover:scale-105 cursor-pointer shadow-sm hover:shadow-md">
             <h3 className="text-xl font-bold mb-2 text-[#2B3990] tracking-wide">
               RESOURCE LIBRARY
             </h3>
