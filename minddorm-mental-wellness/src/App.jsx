@@ -86,7 +86,7 @@ import ResourceIcon from "./pages/Support/ResourceIcon";
 import CallAway from "./pages/Support/CallAway";
 import PathwaysToWellness from "./pages/Support/PathwaysToWellness";
 
-import SupportOptions from "./support_condition";
+import SupportOptions from "./pages/Resources/support_condition";
 import ArticlesPage from "./pages/Resources/articles_page";
 import AudioPage from "./pages/Resources/audio_page";
 import VideoPage from "./pages/Resources/video_page";
