@@ -48,7 +48,7 @@ export default function SupportOptions() {
        <footer className="text-center mt-10 text-gray-600 text-sm">
                 <p>Don't worry Be happy</p>
             </footer>
-            </div>
   );
 }
+
 
