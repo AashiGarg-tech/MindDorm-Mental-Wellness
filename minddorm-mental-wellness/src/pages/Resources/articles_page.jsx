@@ -110,7 +110,7 @@ const ArticlesPage = () => {
       rating: 4.8,
       desc: "Learn practical strategies to manage anxiety during exams and daily college life.",
       tags: ["Anxiety", "Stress Management", "Study Tips"],
-      link: "https://mindful.org/understanding-anxiety-guide/",
+      link: "https://www.innermined.com/post/understanding-anxiety-a-student-s-guide-to-turning-stress-into-strength?srsltid=AfmBOoqFLn5uQXCt3srFL7dMPrwvsaqiLgBmd-8SOyex5CLXirayIUud",
     },
     {
       title: "Building Resilience in University",
@@ -118,7 +118,7 @@ const ArticlesPage = () => {
       rating: 4.9,
       desc: "Develop mental strength and bounce back from academic and personal challenges.",
       tags: ["Resilience", "Mental Strength", "Growth"],
-      link: "https://positivepsychology.com/build-resilience-students/",
+      link: "https://theglobalcollege.com/blog/building-resilience-students/",
     },
     {
       title: "The Power of Mindfulness for Students",
@@ -126,7 +126,7 @@ const ArticlesPage = () => {
       rating: 4.7,
       desc: "Simple mindfulness techniques to improve focus and reduce stress.",
       tags: ["Mindfulness", "Meditation", "Focus"],
-      link: "https://www.mindful.org/mindfulness-for-students/",
+      link: "https://childmind.org/article/the-power-of-mindfulness/",
     },
     {
       title: "The Art of Stillness: Ancient Wisdom for Inner Peace",
@@ -134,7 +134,7 @@ const ArticlesPage = () => {
       rating: 4.8,
       desc: "Explore timeless techniques from Indian heritage to cultivate peace amidst academic pressure.",
       tags: ["Peace", "Indian Wisdom", "Heritage"],
-      link: "https://www.artofliving.org/in-en/meditation/inner-peace",
+      link: "https://www.safalniveshak.com/the-art-of-stillness/",
     },
     {
       title: "Finding Your Inner Shakti: A Guide to Self-Power",
@@ -142,15 +142,15 @@ const ArticlesPage = () => {
       rating: 4.9,
       desc: "Tap into your innate ‘Shakti’ energy to build confidence and navigate university life.",
       tags: ["Self Power", "Divine", "Growth"],
-      link: "https://isha.sadhguru.org/in/en/wisdom/article/finding-your-inner-shakti",
+      link: "https://kripalu.org/living-kripalu/shakti-power-within-you",
     },
     {
       title: "Cosmic Calm: Easing Anxiety with a Broader View",
-      time: "6 min",
+      time: "12 min",
       rating: 4.7,
       desc: "Learn to reduce anxiety through cosmic philosophies and find your place in the universe.",
       tags: ["Philosophy", "Cosmic", "Peace"],
-      link: "https://chopracentermeditation.com/",
+      link: "https://www.cafhglobal.com/meditation-and-anxiety/",
     },
   ];
 
@@ -211,6 +211,7 @@ const ArticlesPage = () => {
 };
 
 export default ArticlesPage;
+
 
 
 
