@@ -1,14 +1,16 @@
-import SupportOptions from "./support_condition";
+import React from "react";
 import { Clock, PlayCircle } from "lucide-react";
+import ResourcesNav from "../../components/ResourcesNav"; // 👈 Navigation bar for Articles, Audio, Video
+import SupportOptions from "./support_condition"; // 👈 Keep if you want support section at bottom
 
-export default function VideosPage() {
+export default function VideoPage() {
   const videos = [
     {
       title: "Full Self Healing Meditation - OM SHANTI",
       views: "2.8M views",
       time: "15:40",
       desc: "This 15-minute basic meditation video is ideal for inner peace and calm.",
-      thumb: "https://i.ytimg.com/vi/abc123/default.jpg",
+      thumb: "https://i.ytimg.com/vi/Jv_MZQkswPQ/hqdefault.jpg",
       link: "https://www.youtube.com/watch?v=Jv_MZQkswPQ",
     },
     {
@@ -16,7 +18,7 @@ export default function VideosPage() {
       views: "803K views",
       time: "22:22",
       desc: "Practice the 12 postures of Surya Namaskar with sacred Vedic chants.",
-      thumb: "https://i.ytimg.com/vi/XYZ456/default.jpg",
+      thumb: "https://i.ytimg.com/vi/QGHJ9pWzuLk/hqdefault.jpg",
       link: "https://www.youtube.com/watch?v=QGHJ9pWzuLk",
     },
     {
@@ -24,7 +26,7 @@ export default function VideosPage() {
       views: "3.9M views",
       time: "15:53",
       desc: "Learn this evidence-based technique to release physical tension and stress.",
-      thumb: "https://i.ytimg.com/vi/GHI789/default.jpg",
+      thumb: "https://i.ytimg.com/vi/1ZrE8GJ7v7s/hqdefault.jpg",
       link: "https://www.youtube.com/watch?v=1ZrE8GJ7v7s",
     },
     {
@@ -32,7 +34,7 @@ export default function VideosPage() {
       views: "3M views",
       time: "10:50",
       desc: "Chanting Gayatri Mantra regularly can establish and stabilize the mind.",
-      thumb: "https://i.ytimg.com/vi/DEF012/default.jpg",
+      thumb: "https://i.ytimg.com/vi/29CrZ8KcIks/hqdefault.jpg",
       link: "https://www.youtube.com/watch?v=29CrZ8KcIks",
     },
     {
@@ -40,7 +42,7 @@ export default function VideosPage() {
       views: "1.6M views",
       time: "10:01",
       desc: "Quick breathing techniques to calm pre-exam nerves.",
-      thumb: "https://i.ytimg.com/vi/PQR678/default.jpg",
+      thumb: "https://i.ytimg.com/vi/DaGpS8VH7yQ/hqdefault.jpg",
       link: "https://www.youtube.com/watch?v=DaGpS8VH7yQ",
     },
     {
@@ -48,25 +50,35 @@ export default function VideosPage() {
       views: "68K views",
       time: "10:01",
       desc: "Start your day with gentle movements to center your mind and body.",
-      thumb: "https://i.ytimg.com/vi/STU901/default.jpg",
+      thumb: "https://i.ytimg.com/vi/8GQK4e2mDqg/hqdefault.jpg",
       link: "https://www.youtube.com/watch?v=8GQK4e2mDqg",
     },
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-semibold text-center text-blue-900 mb-2">
-        Campus Mental Health Resources
+    <div className="min-h-screen bg-gray-50 p-6">
+      {/* 👇 Navigation bar between resources */}
+      <ResourcesNav />
+
+      <h1 className="text-3xl font-bold text-green-700 mb-4 text-center">
+        Video Resources
       </h1>
       <p className="text-center text-gray-600 mb-8">
         Watch mindfulness and relaxation videos designed to help you de-stress and focus.
       </p>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
         {videos.map((v, i) => (
-          <div key={i} className="bg-white rounded-xl shadow-md hover:shadow-lg transition overflow-hidden">
+          <div
+            key={i}
+            className="bg-white rounded-xl shadow-md hover:shadow-lg transition overflow-hidden"
+          >
             <div className="relative">
-              <img src={v.thumb} alt={v.title} className="w-full h-40 object-cover" />
+              <img
+                src={v.thumb}
+                alt={v.title}
+                className="w-full h-40 object-cover"
+              />
               <a
                 href={v.link}
                 target="_blank"
@@ -90,22 +102,11 @@ export default function VideosPage() {
         ))}
       </div>
 
+      {/* 👇 Optional Support section if you have one */}
       <SupportOptions />
     </div>
   );
 }
 
 
-import React from "react";
-import ResourcesNav from "../../components/ResourcesNav";
-
-export default function VideoPage() {
-  return (
-    <div className="min-h-screen bg-gray-50 p-6">
-      <ResourcesNav />
-      <h1 className="text-3xl font-bold text-green-700 mb-4">Videos</h1>
-      {/* Your video content */}
-    </div>
-  );
-}
 
