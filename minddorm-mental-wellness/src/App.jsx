@@ -89,7 +89,7 @@ import PathwaysToWellness from "./pages/Support/PathwaysToWellness";
 import SupportOptions from "./pages/Resources/support_condition";
 import ArticlesPage from "./pages/Resources/articles_page";
 import AudioPage from "./pages/Resources/audio_page";
-import VideosPage from "./pages/Resources/video_page";
+import VideoPage from "./pages/Resources/video_page";
 
 import WellnessDashboard from "./pages/UserDashboard/WellnessDashboard";
 import AdminDashboard from "./pages/AdminDashboard/AdminDashboard";
@@ -127,7 +127,7 @@ const AppContent = () => {
         <Route path="/ResourceIcon" element={<ResourceIcon />} />
         <Route path="/ArticlesPage" element={<ArticlesPage />} />
         <Route path="/AudioPage" element={<AudioPage />} />
-        <Route path="/VideosPage" element={<VideosPage />} />
+        <Route path="/VideoPage" element={<VideoPage />} />
         <Route path="/TrackMoodPage" element={<TrackMoodPage />} />
         <Route path="/WellnessDashboard" element={<WellnessDashboard />} />
         <Route path="/AdminDashboard" element={<AdminDashboard />} />

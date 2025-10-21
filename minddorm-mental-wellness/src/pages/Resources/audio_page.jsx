@@ -49,37 +49,40 @@ export default function AudioPage() {
   ];
 
   return (
-    <div className="max-w-6xl mx-auto px-4 py-10">
-      <h1 className="text-3xl font-semibold text-center text-blue-900 mb-2">
-        Campus Mental Health Resources
-      </h1>
-      <p className="text-center text-gray-600 mb-8">
-        Listen to calming audio designed for study focus, relaxation, and mindfulness.
-      </p>
+    <div className="min-h-screen bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] font-sans">
+      <div className="max-w-6xl mx-auto px-4 py-10">
+        <ResourcesNav />
+        <h1 className="text-3xl font-semibold text-center text-blue-900 mb-2">
+          Campus Mental Health Resources
+        </h1>
+        <p className="text-center text-gray-600 mb-8">
+          Listen to calming audio designed for study focus, relaxation, and mindfulness.
+        </p>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {audios.map((a, i) => (
-          <div key={i} className="bg-gradient-to-b from-blue-50 to-blue-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition text-center">
-            <Music2 className="text-blue-600 mx-auto mb-3" size={24} />
-            <h3 className="text-lg font-semibold mb-2">{a.title}</h3>
-            <p className="text-gray-600 text-sm mb-3">{a.desc}</p>
-            <div className="flex justify-center gap-6 text-sm text-gray-500 mb-4">
-              <span>{a.tracks}</span>
-              <span className="flex items-center gap-1"><Clock size={14}/> {a.duration}</span>
+        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {audios.map((a, i) => (
+            <div key={i} className="bg-gradient-to-b from-blue-50 to-blue-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition text-center">
+              <Music2 className="text-blue-600 mx-auto mb-3" size={24} />
+              <h3 className="text-lg font-semibold mb-2">{a.title}</h3>
+              <p className="text-gray-600 text-sm mb-3">{a.desc}</p>
+              <div className="flex justify-center gap-6 text-sm text-gray-500 mb-4">
+                <span>{a.tracks}</span>
+                <span className="flex items-center gap-1"><Clock size={14}/> {a.duration}</span>
+              </div>
+              <a
+                href={a.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-lg text-sm hover:bg-blue-700 transition"
+              >
+                <Play size={16}/> Play
+              </a>
             </div>
-            <a
-              href={a.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-blue-600 text-white px-5 py-2 rounded-lg text-sm hover:bg-blue-700 transition"
-            >
-              <Play size={16}/> Play
-            </a>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
 
-      <SupportOptions />
+        <SupportOptions />
+      </div>
     </div>
   );
 }
