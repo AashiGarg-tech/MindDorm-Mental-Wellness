@@ -73,13 +73,12 @@
 // export default App;
 
 
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, useLocation } from "react-router-dom";
+import React, { useState } from "react";
+import { BrowserRouter as Router, Routes, Route, useLocation, Navigate, Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import AuthPage from "./pages/LoginPage/AuthPage";
 
 import HomePage from "./pages/Home/HomePage";
-
 import SupportPage from "./pages/Support/SupportPage";  
 import WellnessCard from "./pages/Support/WellnessCard";
 import ResourceIcon from "./pages/Support/ResourceIcon";  
@@ -100,37 +99,66 @@ import ReachOutPage from "./pages/Community/ReachOutPage";
 import CommunityHeader from "./pages/Community/CommunityHeader";
 
 import ChatPage from "./pages/ChatBot/ChatPage";
-
+import UserProfile from "./components/UserProfile";
 import TrackMoodPage from "./pages/TrackMood/TrackMoodPage";
+
+const ProtectedLayout = ({ onSignOut }) => (
+  <>
+    <Header onSignOut={onSignOut} />
+    <main className="p-4">
+      <Outlet />
+    </main>
+  </>
+);
 
 const AppContent = () => {
   const location = useLocation();
   const hideHeader = location.pathname === "/";
 
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [userEmail, setUserEmail] = useState("test.user@betterx.com");
+  const [userName, setUserName] = useState("Wellness User");
+
+  // For UI only: Sign In simply sets loggedIn true
+  const handleAuthSuccess = () => {
+    setIsLoggedIn(true);
+  };
+
+  // Sign Out always goes back to front page
+  const handleSignOut = () => {
+    setIsLoggedIn(false);
+    window.location.href = "/";
+  };
+
   return (
     <div className="min-h-screen font-sans bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB]">
-      {!hideHeader && <Header />}
+      {!hideHeader && isLoggedIn && <Header onSignOut={handleSignOut} />}
 
       <Routes>
-        <Route path="/" element={<AuthPage />} />
-        <Route path="/HomePage" element={<HomePage />} />
-        <Route path="/lifeline" element={<CallAway />} />
-        <Route path="/find-wellness" element={<PathwaysToWellness />} />
-        <Route path="/ChatPage" element={<ChatPage />} />
-        <Route path="/AnnouncementsPage" element={<AnnouncementsPage />} />
-        <Route path="/ListenLearnPage" element={<ListenLearnPage />} />
-        <Route path="/ReachOutPage" element={<ReachOutPage />} />
-        <Route path="/CommunityHeader" element={<CommunityHeader />} />
-        <Route path="/SupportOptions" element={<SupportOptions />} />
-        <Route path="/WellnessCard" element={<WellnessCard />} />
-        <Route path="/SupportPage" element={<SupportPage />} />
-        <Route path="/ResourceIcon" element={<ResourceIcon />} />
-        <Route path="/ArticlesPage" element={<ArticlesPage />} />
-        <Route path="/AudioPage" element={<AudioPage />} />
-        <Route path="/VideoPage" element={<VideoPage />} />
-        <Route path="/TrackMoodPage" element={<TrackMoodPage />} />
-        <Route path="/WellnessDashboard" element={<WellnessDashboard />} />
-        <Route path="/AdminDashboard" element={<AdminDashboard />} />
+        <Route path="/" element={<AuthPage onAuthSuccess={handleAuthSuccess} />} />
+
+        <Route element={<ProtectedLayout onSignOut={handleSignOut} />}>
+          <Route path="/HomePage" element={<HomePage />} />
+          <Route path="/SupportPage" element={<SupportPage />} />
+          <Route path="/ChatPage" element={<ChatPage />} />
+          <Route path="/AnnouncementsPage" element={<AnnouncementsPage />} />
+          <Route path="/ListenLearnPage" element={<ListenLearnPage />} />
+          <Route path="/ReachOutPage" element={<ReachOutPage />} />
+          <Route path="/SupportOptions" element={<SupportOptions />} />
+          <Route path="/WellnessCard" element={<WellnessCard />} />
+          <Route path="/ResourceIcon" element={<ResourceIcon />} />
+          <Route path="/ArticlesPage" element={<ArticlesPage />} />
+          <Route path="/AudioPage" element={<AudioPage />} />
+          <Route path="/VideoPage" element={<VideoPage />} />
+          <Route path="/TrackMoodPage" element={<TrackMoodPage />} />
+          <Route path="/WellnessDashboard" element={<WellnessDashboard />} />
+          <Route path="/UserProfile" element={<UserProfile userEmail={userEmail} userName={userName} />} />
+          <Route path="/AdminDashboard" element={<AdminDashboard />} />
+          <Route path="/lifeline" element={<CallAway />} />
+          <Route path="/find-wellness" element={<PathwaysToWellness />} />
+          <Route path="/CommunityHeader" element={<CommunityHeader />} />
+        </Route>
+
         <Route path="*" element={<div className="text-center py-20 text-gray-600 text-xl">🚧 Page Not Found</div>} />
       </Routes>
     </div>
