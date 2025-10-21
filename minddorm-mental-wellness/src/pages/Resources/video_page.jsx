@@ -94,3 +94,18 @@ export default function VideosPage() {
     </div>
   );
 }
+
+
+import React from "react";
+import ResourcesNav from "../../components/ResourcesNav";
+
+export default function VideoPage() {
+  return (
+    <div className="min-h-screen bg-gray-50 p-6">
+      <ResourcesNav />
+      <h1 className="text-3xl font-bold text-green-700 mb-4">Videos</h1>
+      {/* Your video content */}
+    </div>
+  );
+}
+
