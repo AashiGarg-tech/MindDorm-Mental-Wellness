@@ -9,7 +9,7 @@ export default function VideoPage() {
       views: "26M views",
       time: "15:40",
       desc: "This 15-minute basic meditation video is ideal for inner peace and calm.",
-      thumb: "https://i.ytimg.com/vi/abc123/default.jpg",
+      thumb: "/omshanti.jpg",
       link: "https://www.youtube.com/watch?v=YWDRFZFCrGE",
     },
     {
@@ -17,7 +17,7 @@ export default function VideoPage() {
       views: "10M views",
       time: "27:22",
       desc: "Practice the 12 postures of Surya Namaskar with sacred Vedic chants.",
-      thumb: "https://i.ytimg.com/vi/XYZ456/default.jpg",
+      thumb: "/surya_namaskar.jpg",
       link: "https://www.youtube.com/watch?v=7s0E8ecWncM",
     },
     {
@@ -25,7 +25,7 @@ export default function VideoPage() {
       views: "4M views",
       time: "15:52",
       desc: "Learn this evidence-based technique to release physical tension and stress.",
-      thumb: "https://i.ytimg.com/vi/GHI789/default.jpg",
+      thumb: "/pmr.jpg",
       link: "https://www.youtube.com/watch?v=86HUcX8ZtAk",
     },
     {
@@ -33,7 +33,7 @@ export default function VideoPage() {
       views: "3.1M views",
       time: "10:50",
       desc: "Chanting Gayatri Mantra regularly can establish and stabilize the mind.",
-      thumb: "https://i.ytimg.com/vi/DEF012/default.jpg",
+      thumb: "/gaytrimantra.jpg",
       link: "https://www.youtube.com/watch?v=8lxDnvAH4tQ",
     },
     {
@@ -41,7 +41,7 @@ export default function VideoPage() {
       views: "1.6M views",
       time: "10:01",
       desc: "Quick breathing techniques to calm pre-exam nerves.",
-      thumb: "https://i.ytimg.com/vi/PQR678/default.jpg",
+      thumb: "/exam_success.jpg",
       link: "https://www.youtube.com/watch?v=AtF0T2fPvbI",
     },
     {
@@ -49,7 +49,7 @@ export default function VideoPage() {
       views: "69K views",
       time: "12:01",
       desc: "Start your day with gentle movements to center your mind and body.",
-      thumb: "https://i.ytimg.com/vi/STU901/default.jpg",
+      thumb: "/morning_yoga.jpg",
       link: "https://youtu.be/WrM12NYA7wg",
     },
   ];
@@ -97,5 +97,6 @@ export default function VideoPage() {
     </div>
   );
 }
+
 
 
