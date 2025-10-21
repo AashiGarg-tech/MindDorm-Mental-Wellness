@@ -209,38 +209,5 @@ const ArticlesPage = () => {
   );
 };
 
-export default function ArticlesPage() {
-  return (
-    <div className="min-h-screen bg-gray-50 p-6">  {/* 👈 Outer layout */}
-
-      {/* 👇 Step 2: Add the Resources navigation bar here */}
-      <ResourcesNav />
-
-      {/* 👇 Step 3: Your page title */}
-      <h1 className="text-3xl font-bold text-blue-700 mb-4">
-        Articles
-      </h1>
-
-      {/* 👇 Step 4: Your existing content — article cards, links, etc. */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {/* Example: */}
-        <a
-          href="https://example.com/article1"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="block p-6 bg-white shadow-md rounded-xl hover:shadow-lg"
-        >
-          <h2 className="text-xl font-semibold text-blue-600 mb-2">
-            Mindfulness in Daily Life
-          </h2>
-          <p className="text-gray-500 text-sm">
-            Simple ways to stay calm and present throughout your day.
-          </p>
-        </a>
-
-        {/* Add more article links/cards here */}
-      </div>
-    </div>
-  );
-}
+export default ArticlesPage;
 
