@@ -9,7 +9,7 @@ export default function VideoPage() {
       views: "26M views",
       time: "15:40",
       desc: "This 15-minute basic meditation video is ideal for inner peace and calm.",
-      thumb: "/omshanti.jpg",
+      thumb: "/images/omshanti.jpg",
       link: "https://www.youtube.com/watch?v=YWDRFZFCrGE",
     },
     {
@@ -17,7 +17,7 @@ export default function VideoPage() {
       views: "10M views",
       time: "27:22",
       desc: "Practice the 12 postures of Surya Namaskar with sacred Vedic chants.",
-      thumb: "/surya_namaskar.png",
+      thumb: "/images/surya_namaskar.png",
       link: "https://www.youtube.com/watch?v=7s0E8ecWncM",
     },
     {
@@ -25,7 +25,7 @@ export default function VideoPage() {
       views: "4M views",
       time: "15:52",
       desc: "Learn this evidence-based technique to release physical tension and stress.",
-      thumb: "/pmr.avif",
+      thumb: "/images/pmr.avif",
       link: "https://www.youtube.com/watch?v=86HUcX8ZtAk",
     },
     {
@@ -33,7 +33,7 @@ export default function VideoPage() {
       views: "3.1M views",
       time: "10:50",
       desc: "Chanting Gayatri Mantra regularly can establish and stabilize the mind.",
-      thumb: "/gaytrimantra.jpg",
+      thumb: "/images/gaytrimantra.jpg",
       link: "https://www.youtube.com/watch?v=8lxDnvAH4tQ",
     },
     {
@@ -41,7 +41,7 @@ export default function VideoPage() {
       views: "1.6M views",
       time: "10:01",
       desc: "Quick breathing techniques to calm pre-exam nerves.",
-      thumb: "/exam_success.jpg",
+      thumb: "/images/exam_success.jpg",
       link: "https://www.youtube.com/watch?v=AtF0T2fPvbI",
     },
     {
@@ -49,7 +49,7 @@ export default function VideoPage() {
       views: "69K views",
       time: "12:01",
       desc: "Start your day with gentle movements to center your mind and body.",
-      thumb: "/morning_yoga.jpg",
+      thumb: "/images/morning_yoga.jpg",
       link: "https://youtu.be/WrM12NYA7wg",
     },
   ];
@@ -97,6 +97,7 @@ export default function VideoPage() {
     </div>
   );
 }
+
 
 
 
