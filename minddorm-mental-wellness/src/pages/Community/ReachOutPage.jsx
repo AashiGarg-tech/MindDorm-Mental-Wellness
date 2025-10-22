@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Heart, MessageCircle, Send, Mic } from 'lucide-react';
+import { Heart, MessageCircle, Send, Mic, Flag } from 'lucide-react';
 import CommunityHeader from './CommunityHeader';
 
 const ReachOutPage = () => {
   const [messageText, setMessageText] = useState('');
+  const [showFlagModal, setShowFlagModal] = useState(false);
+  const [selectedPostId, setSelectedPostId] = useState(null);
+  const [flagReason, setFlagReason] = useState('');
   const [posts, setPosts] = useState([
     {
       id: 1,
@@ -13,6 +16,7 @@ const ReachOutPage = () => {
       text: "I've been dealing with depression for a while. Some days are really hard, but sharing here makes me feel less isolated.",
       likes: 12,
       isLiked: false,
+      isFlagged: false,
       isResponse: false,
       parentId: null
     },
@@ -39,6 +43,44 @@ const ReachOutPage = () => {
           }
         : post
     ));
+  };
+
+  const handleFlagClick = (postId) => {
+    setSelectedPostId(postId);
+    setShowFlagModal(true);
+    setFlagReason('');
+  };
+
+  const handleReasonChange = (e) => {
+    const value = e.target.value;
+    if (value === 'other') {
+      setFlagReason('other:');
+    } else {
+      setFlagReason(value);
+    }
+  };
+
+  const handleFlagSubmit = () => {
+    if (!flagReason.trim()) return;
+    
+    setPosts(posts.map(post =>
+      post.id === selectedPostId
+        ? {
+            ...post,
+            isFlagged: true,
+            flagReason: flagReason.trim()
+          }
+        : post
+    ));
+    setShowFlagModal(false);
+    setSelectedPostId(null);
+    setFlagReason('');
+  };
+
+  const handleFlagCancel = () => {
+    setShowFlagModal(false);
+    setSelectedPostId(null);
+    setFlagReason('');
   };
 
   return (
@@ -110,10 +152,79 @@ const ReachOutPage = () => {
                     <MessageCircle className="w-5 h-5" />
                     <span className="text-sm font-medium">Reply</span>
                   </button>
+
+                  <button
+                    onClick={() => handleFlagClick(post.id)}
+                    className={`flex items-center gap-2 ${
+                      post.isFlagged
+                        ? 'text-yellow-500'
+                        : 'text-slate-400 hover:text-yellow-500'
+                    }`}
+                    title={post.isFlagged ? 'Post has been flagged' : 'Flag this post'}
+                  >
+                    <Flag className="w-5 h-5" />
+                  </button>
                 </div>
               </div>
             ))}
           </div>
+
+          {/* Flag Modal */}
+          {showFlagModal && (
+            <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+              <div className="bg-white rounded-lg p-6 max-w-md w-full mx-4">
+                <h3 className="text-lg font-semibold text-[#2B5A7A] mb-4">
+                  Flag this post
+                </h3>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 mb-2">
+                    Please select a reason for flagging:
+                  </label>
+                  <select
+                    value={flagReason.startsWith('other:') ? 'other' : flagReason}
+                    onChange={handleReasonChange}
+                    className="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                  >
+                    <option value="">Select a reason</option>
+                    <option value="inappropriate">Inappropriate Content</option>
+                    <option value="harassment">Harassment</option>
+                    <option value="spam">Spam</option>
+                    <option value="hate_speech">Hate Speech</option>
+                    <option value="misinformation">Misinformation</option>
+                    <option value="other">Other</option>
+                  </select>
+                  {flagReason.startsWith('other:') && (
+                    <textarea
+                      placeholder="Please specify the reason..."
+                      className="mt-2 w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                      rows="3"
+                      value={flagReason.replace('other:', '').trim()}
+                      onChange={(e) => setFlagReason(`other: ${e.target.value}`)}
+                    />
+                  )}
+                </div>
+                <div className="flex justify-end gap-3">
+                  <button
+                    onClick={handleFlagCancel}
+                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-100 rounded-md"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleFlagSubmit}
+                    disabled={!flagReason}
+                    className={`px-4 py-2 text-sm font-medium text-white rounded-md ${
+                      flagReason
+                        ? 'bg-red-500 hover:bg-red-600'
+                        : 'bg-gray-300 cursor-not-allowed'
+                    }`}
+                  >
+                    Submit Flag
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
 
           {/* Message Input */}
           <div className="mt-10 pt-6 border-t border-slate-200">
