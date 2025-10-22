@@ -51,13 +51,14 @@ export default function AudioPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] font-sans">
       <div className="max-w-6xl mx-auto px-4 py-10">
-        <ResourcesNav />
+       
         <h1 className="text-5xl font-semibold text-[#000459] mb-2 text-center">
           Campus Mental Health Resources
       </h1>
       <p className="text-center text-gray-600 mb-8">
         Listen to calming audio designed for study focus, relaxation, and mindfulness.
       </p>
+        <ResourcesNav />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {audios.map((a, i) => (
             <div key={i} className="bg-gradient-to-b from-blue-50 to-blue-100 p-5 rounded-2xl shadow-md hover:shadow-lg transition text-center">
@@ -85,5 +86,6 @@ export default function AudioPage() {
     </div>
   );
 }
+
 
 
