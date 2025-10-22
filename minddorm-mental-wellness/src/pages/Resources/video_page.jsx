@@ -57,13 +57,14 @@ export default function VideoPage() {
   return (
     <div className="min-h-screen bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] font-sans">
       <div className="max-w-6xl mx-auto px-4 py-10">
-        <ResourcesNav />
+      
         <h1 className="text-5xl font-semibold text-[#000459] mb-2 text-center">
           Campus Mental Health Resources
       </h1>
       <p className="text-center text-gray-600 mb-8">
         Watch mindfulness and relaxation videos designed to help you de-stress and focus.
       </p>
+        <ResourcesNav />
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {videos.map((v, i) => (
             <div key={i} className="bg-white rounded-xl shadow-md hover:shadow-lg transition overflow-hidden">
@@ -97,6 +98,7 @@ export default function VideoPage() {
     </div>
   );
 }
+
 
 
 
