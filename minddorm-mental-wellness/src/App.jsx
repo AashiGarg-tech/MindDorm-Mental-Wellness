@@ -100,7 +100,11 @@ import CommunityHeader from "./pages/Community/CommunityHeader";
 
 import ChatPage from "./pages/ChatBot/ChatPage";
 import UserProfile from "./components/UserProfile";
+
 import TrackMoodPage from "./pages/TrackMood/TrackMoodPage";
+import PSSAssessment from "./pages/TrackMood/PSS";
+import PHQ9Assessment from "./pages/TrackMood/PHQ-9";
+import GAD7Assessment from "./pages/TrackMood/GAD-7";
 
 const ProtectedLayout = ({ onSignOut }) => (
   <>
@@ -151,6 +155,9 @@ const AppContent = () => {
           <Route path="/AudioPage" element={<AudioPage />} />
           <Route path="/VideoPage" element={<VideoPage />} />
           <Route path="/TrackMoodPage" element={<TrackMoodPage />} />
+          <Route path="/PSSAssessment" element={<PSSAssessment />} />
+          <Route path="/PHQ9Assessment" element={<PHQ9Assessment />} />
+          <Route path="/GAD7Assessment" element={<GAD7Assessment />} />
           <Route path="/WellnessDashboard" element={<WellnessDashboard />} />
           <Route path="/UserProfile" element={<UserProfile userEmail={userEmail} userName={userName} />} />
           <Route path="/AdminDashboard" element={<AdminDashboard />} />
