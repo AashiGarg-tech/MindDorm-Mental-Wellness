@@ -53,7 +53,18 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import fetch from "node-fetch";
 import dotenv from "dotenv";
+//
+import mongoose from "mongoose";
+//
 import { authRoutes } from "./routes/auth.js"; // ✅ Named import
+
+//
+import announcementsRoutes from "./routes/announcements.js";
+import storiesRoutes from "./routes/stories.js";
+import chatRoutes from "./routes/chat.js";
+import usersRoutes from "./routes/users.js";
+//
+
 import pool from "./config/db.js";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
@@ -67,8 +78,28 @@ const PORT = 5000;
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(bodyParser.json());
 
+
+//🔌 MongoDB Connection
+mongoose.connect(process.env.MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+}).then(() => console.log("✅ Connected to MongoDB"))
+  .catch(err => console.error("❌ MongoDB error:", err));
+
+//
+
+
 // 🔐 Authentication Routes
 app.use("/api/auth", authRoutes);
+
+
+// 📣 New Feature Routes
+app.use("/api/announcements", announcementsRoutes);
+app.use("/api/stories", storiesRoutes);
+app.use("/api/chat", chatRoutes);
+app.use("/api/users", usersRoutes);
+//
+
 
 // 🤖 Chatbot Route
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
