@@ -1,4 +1,6 @@
-const mongoose = require('mongoose');
+// backend/models/ChatMessage.js - Converted to ES Module Syntax
+
+import mongoose from 'mongoose';
 
 const chatMessageSchema = new mongoose.Schema({
   userId: { type: String, required: true },
@@ -15,4 +17,5 @@ const chatMessageSchema = new mongoose.Schema({
   createdAt: { type: Date, default: Date.now }
 });
 
-module.exports = mongoose.model('ChatMessage', chatMessageSchema);
+// Use 'export default' for the model
+export default mongoose.model('ChatMessage', chatMessageSchema);
