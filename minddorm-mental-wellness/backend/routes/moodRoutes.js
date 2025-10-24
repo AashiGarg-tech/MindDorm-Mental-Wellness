@@ -1,16 +1,19 @@
 import express from 'express';
-// 1. MUST use ES Module import syntax for files that use 'export default'
-import authenticateToken from '../middleware/authenticateToken.js'; 
+// import authenticateToken from '../middleware/authenticateToken.js'; // Temporarily commented out
 import MoodEntry from '../models/MoodEntry.js';
 
 const router = express.Router();
 
 // POST /api/moods/track
-// Route to save a new mood entry. Requires authentication.
-router.post('/track', authenticateToken, async (req, res) => {
-  const { mood, note } = req.body;
-  // userId comes from the JWT payload attached by the middleware
-  const userId = req.user.id; 
+// Route to save a new mood entry. AUTHENTICATION TEMPORARILY REMOVED FOR TESTING.
+router.post('/track', async (req, res) => {
+  // --- FIX 1: Destructure userId directly from the request body ---
+  const { mood, note, userId } = req.body; 
+  // const userId = req.user.id; // Old way (from middleware)
+
+  if (!userId) {
+    return res.status(400).json({ message: 'User ID is required in the request body for testing without authentication.' });
+  }
 
   try {
     // 1. Create and save the new entry to MongoDB
@@ -39,9 +42,16 @@ router.post('/track', authenticateToken, async (req, res) => {
 });
 
 // GET /api/moods/history
-// Route to fetch the user's mood history. Requires authentication.
-router.get('/history', authenticateToken, async (req, res) => {
-    const userId = req.user.id;
+// Route to fetch the user's mood history. AUTHENTICATION TEMPORARILY REMOVED FOR TESTING.
+router.get('/history', async (req, res) => {
+    // const userId = req.user.id; // Removed authentication check
+    // --- FIX 2: Retrieve userId from query parameters for testing ---
+    const { userId } = req.query;
+    
+    if (!userId) {
+        return res.status(400).json({ message: 'User ID required in query parameters (?userId=...) for history retrieval.' });
+    }
+    
     try {
         // Fetch and sort entries by newest first
         const history = await MoodEntry.find({ userId }).sort({ date: -1 });

@@ -250,12 +250,16 @@ const PORT = 5000;
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(bodyParser.json());
 
-// 🔌 MongoDB Connection
-mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-}).then(() => console.log("✅ Connected to MongoDB"))
-  .catch(err => console.error("❌ MongoDB error:", err));
+// Get the URI after dotenv has run
+const MONGO_URI = process.env.MONGODB_URI;
+
+// Log the URI to confirm it's loading the Atlas string
+console.log('Attempting connection with URI:', MONGO_URI); 
+
+// 🔌 MongoDB Connection (Removed deprecated options)
+mongoose.connect(MONGO_URI)
+.then(() => console.log("✅ Connected to MongoDB"))
+.catch(err => console.error("❌ MongoDB error:", err));
 
 
 // ⚠️ Asynchronous Route Setup Function ⚠️
