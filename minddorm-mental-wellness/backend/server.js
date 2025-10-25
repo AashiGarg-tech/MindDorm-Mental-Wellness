@@ -242,6 +242,7 @@ import chatBotRoutes from "./routes/chatServer.js";
 import assessmentRoutes from "./routes/assessmentRoutes.js";
 // 👇 IMPORT THE NEW MOOD ROUTES FILE
 import moodRoutes from "./routes/moodRoutes.js"; 
+import userStatsRoutes from "./routes/userStatsRoutes.js";
 
 import pool from "./config/db.js";
 
@@ -279,6 +280,7 @@ app.use("/api/assessment", assessmentRoutes(pool));
 
 // 🎭 MOOD TRACKER ROUTES (NEW)
 app.use("/api/mood", moodRoutes(pool)); 
+app.use("/api/user-stats", userStatsRoutes(pool));
 
 // 🤖 Chatbot Route (OpenAI)
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
