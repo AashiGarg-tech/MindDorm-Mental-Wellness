@@ -149,7 +149,7 @@ import storiesRoutes from "./routes/stories.js";
 import chatRoutes from "./routes/chat.js";
 import usersRoutes from "./routes/users.js";
 import chatBotRoutes from "./routes/chatServer.js";
-
+import assessmentRoutes from "./routes/assessmentRoutes.js";
 
 // 👇 IMPORT THE NEW MOOD ROUTES FILE
 import moodRoutes from "./routes/moodRoutes.js"; 
