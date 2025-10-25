@@ -162,7 +162,7 @@ import jwt from "jsonwebtoken";
 dotenv.config();
 
 const app = express();
-const PORT = 5000;
+const PORT = 5050;
 
 // ✅ Allow frontend to connect (adjust port if needed)
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));

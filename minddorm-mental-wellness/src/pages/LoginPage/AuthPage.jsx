@@ -435,8 +435,8 @@ const AuthPage = ({ onAuthSuccess }) => {
     setSuccess('');
 
     const endpoint = isLogin
-      ? 'http://localhost:5000/api/auth/login'
-      : 'http://localhost:5000/api/auth/signup';
+      ? 'http://localhost:5050/api/auth/login'
+      : 'http://localhost:5050/api/auth/signup';
 
     const payload = {
       email: formData.email,
