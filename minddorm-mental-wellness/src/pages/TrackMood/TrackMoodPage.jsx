@@ -981,7 +981,7 @@ const TrackMoodPage = () => {
     const [note, setNote] = useState("");
     const [message, setMessage] = useState(''); // State for success/error messages
 
-    const API_URL = "http://localhost:5000/api/moods/track"; // Corrected backend endpoint
+    const API_URL = "http://localhost:5050/api/moods/track"; // Corrected backend endpoint
 
     const moods = [
         { id: 1, name: "Happy", icon: <Smile className="w-8 h-8 text-yellow-500" /> },
