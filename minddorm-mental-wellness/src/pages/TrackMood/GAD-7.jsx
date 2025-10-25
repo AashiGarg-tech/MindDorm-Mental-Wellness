@@ -1,14 +1,11 @@
 import React, { useState } from "react";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 
-// NOTE: We assume your application handles authentication and provides a token
-// for the backend to extract the user ID (req.userId).
-
 const GAD7Assessment = () => {
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
-  const [isSaving, setIsSaving] = useState(false); // New state for loading indicator
-  const [saveError, setSaveError] = useState(null); // New state for errors
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveError, setSaveError] = useState(null);
 
   const questions = [
     { id: 1, text: "Feeling nervous, anxious, or on edge" },
@@ -27,6 +24,7 @@ const GAD7Assessment = () => {
     { value: 3, label: "Nearly every day" }
   ];
 
+  // Pass value as a number
   const handleAnswer = (questionId, value) => {
     setAnswers({ ...answers, [questionId]: value });
   };
@@ -40,34 +38,46 @@ const GAD7Assessment = () => {
       level: "Minimal Anxiety", 
       color: "text-green-600", 
       bg: "bg-green-50",
+      border: "border-green-500",
       message: "Your responses suggest minimal anxiety. Continue practicing self-care and stress management."
     };
     if (score <= 9) return { 
       level: "Mild Anxiety", 
       color: "text-yellow-600", 
       bg: "bg-yellow-50",
+      border: "border-yellow-500",
       message: "Your responses suggest mild anxiety. Consider relaxation techniques and monitoring your symptoms."
     };
     if (score <= 14) return { 
       level: "Moderate Anxiety", 
       color: "text-orange-600", 
       bg: "bg-orange-50",
+      border: "border-orange-500",
       message: "Your responses suggest moderate anxiety. Consider speaking with a mental health professional for support."
     };
     return { 
       level: "Severe Anxiety", 
       color: "text-red-600", 
       bg: "bg-red-50",
+      border: "border-red-500",
       message: "Your responses suggest severe anxiety. Professional treatment is strongly recommended."
     };
   };
 
-  // 💥 NEW FUNCTION: Handles the API call to save the score
   const saveAssessment = async (score, interpretation) => {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      setSaveError("User not logged in. Please login again.");
+      return false;
+    }
+
+    // --- SECURITY FIX: Removed client-side token decoding. ---
+    // The backend should derive the userId from the token in the Authorization header.
     const assessmentData = {
-      assessment_type: "GAD-7", 
+      assessment_type: "GAD-7",
       score: score,
       score_level: interpretation.level,
+      // REMOVED: userId - The backend should get this from the token.
     };
 
     try {
@@ -75,18 +85,24 @@ const GAD7Assessment = () => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          // 🚨 TODO: Replace 'YOUR_AUTH_TOKEN' with the actual token retrieved after login
-          // e.g., "Authorization": `Bearer ${localStorage.getItem('authToken')}` 
+          "Authorization": `Bearer ${token}`
         },
         body: JSON.stringify(assessmentData),
       });
 
       if (!response.ok) {
-        // Throw an error if the backend responded with a non-2xx status code
         const errorBody = await response.json();
+        
+        // 🎯 NEW ERROR HANDLING: Check for the 409 Conflict status
+        if (response.status === 409) {
+          // This handles the one-per-day restriction message from the backend
+          throw new Error(errorBody.message); 
+        }
+        
+        // Handle all other errors (400, 500, etc.)
         throw new Error(errorBody.message || "Failed to save assessment score.");
       }
-
+      
       console.log("Assessment saved successfully!");
       return true;
     } catch (error) {
@@ -96,11 +112,9 @@ const GAD7Assessment = () => {
     }
   };
 
-  // 💥 UPDATED FUNCTION: Executes the save before showing results
   const handleSubmit = async () => {
     if (Object.keys(answers).length !== questions.length) {
-      // Use console.error instead of alert() for a cleaner flow
-      console.error("Please answer all questions before submitting.");
+      setSaveError("Please answer all questions before submitting.");
       return; 
     }
 
@@ -110,12 +124,10 @@ const GAD7Assessment = () => {
     setIsSaving(true);
     setSaveError(null);
     
-    // 1. Attempt to save data
     const success = await saveAssessment(score, interpretation);
     
     setIsSaving(false);
 
-    // 2. Only show the results if the save was successful
     if (success) {
       setSubmitted(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -126,6 +138,10 @@ const GAD7Assessment = () => {
     setAnswers({});
     setSubmitted(false);
     setSaveError(null);
+  };
+  
+  const handleBack = () => {
+    window.history.back();
   };
 
   if (submitted) {
@@ -141,7 +157,7 @@ const GAD7Assessment = () => {
               <h2 className="text-3xl font-bold text-[#000459]">Assessment Complete</h2>
             </div>
 
-            <div className={`${interpretation.bg} border-l-4 border-${interpretation.color.split('-')[1]}-500 p-6 rounded-lg`}>
+            <div className={`${interpretation.bg} border-l-4 ${interpretation.border} p-6 rounded-lg`}>
               <h3 className={`text-2xl font-bold ${interpretation.color} mb-2`}>
                 Your Score: {score}/21
               </h3>
@@ -167,7 +183,7 @@ const GAD7Assessment = () => {
             <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-lg">
               <p className="text-sm text-gray-700">
                 <strong>Note:</strong> This assessment is a screening tool and not a diagnostic instrument. 
-                If you're experiencing significant anxiety, please consult with a mental health professional for proper evaluation and treatment.
+                If you're experiencing significant anxiety, please consult with a mental health professional.
               </p>
             </div>
 
@@ -179,7 +195,7 @@ const GAD7Assessment = () => {
                 Take Again
               </button>
               <button
-                onClick={() => window.history.back()}
+                onClick={handleBack}
                 className="px-6 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full font-medium transition-transform hover:scale-105"
               >
                 Back to Dashboard
@@ -195,7 +211,7 @@ const GAD7Assessment = () => {
     <div className="min-h-screen font-sans bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] py-8 px-4">
       <div className="max-w-4xl mx-auto">
         <button
-          onClick={() => window.history.back()}
+          onClick={handleBack}
           className="flex items-center gap-2 text-[#5AA7E8] hover:text-[#3F8BD1] mb-6 font-medium"
         >
           <ArrowLeft className="w-5 h-5" />
@@ -215,7 +231,6 @@ const GAD7Assessment = () => {
             </div>
           </div>
           
-          {/* Display Save Error if applicable */}
           {saveError && (
               <div className="bg-red-100 text-red-700 p-3 rounded-lg text-center mb-6">
                   Error saving score: {saveError}
@@ -237,10 +252,12 @@ const GAD7Assessment = () => {
                       <input
                         type="radio"
                         name={`question-${question.id}`}
-                        value={option.value}
+                        // FIX: Convert value to string for HTML input, and handle Number conversion on change.
+                        value={String(option.value)}
                         checked={answers[question.id] === option.value}
-                        onChange={() => handleAnswer(question.id, option.value)}
+                        onChange={(e) => handleAnswer(question.id, Number(e.target.value))}
                         className="w-4 h-4 text-[#5AA7E8]"
+                        disabled={isSaving} // disable during save
                       />
                       <span className="text-gray-700">{option.label}</span>
                     </label>
@@ -253,7 +270,7 @@ const GAD7Assessment = () => {
           <div className="mt-8 text-center">
             <button
               onClick={handleSubmit}
-              disabled={isSaving} // Disable button while saving
+              disabled={isSaving}
               className={`px-10 py-3 text-white rounded-full font-medium transition-transform hover:scale-105 text-lg ${
                 isSaving ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#5AA7E8] hover:bg-[#3F8BD1]'
               }`}

@@ -4,6 +4,8 @@ import { ArrowLeft, CheckCircle } from "lucide-react";
 const PHQ9Assessment = () => {
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSaving, setIsSaving] = useState(false); // 👈 NEW
+  const [saveError, setSaveError] = useState(null); // 👈 NEW
 
   const questions = [
     { id: 1, text: "Little interest or pleasure in doing things" },
@@ -37,52 +39,125 @@ const PHQ9Assessment = () => {
       level: "Minimal Depression", 
       color: "text-green-600", 
       bg: "bg-green-50",
+      border: "border-green-500", // Added border for consistency
       message: "Your responses suggest minimal or no depression. Continue monitoring your well-being."
     };
     if (score <= 9) return { 
       level: "Mild Depression", 
       color: "text-yellow-600", 
       bg: "bg-yellow-50",
+      border: "border-yellow-500", // Added border for consistency
       message: "Your responses suggest mild depression. Consider self-care strategies and monitoring symptoms."
     };
     if (score <= 14) return { 
       level: "Moderate Depression", 
       color: "text-orange-600", 
       bg: "bg-orange-50",
+      border: "border-orange-500", // Added border for consistency
       message: "Your responses suggest moderate depression. Consider speaking with a mental health professional."
     };
     if (score <= 19) return { 
       level: "Moderately Severe Depression", 
       color: "text-red-600", 
       bg: "bg-red-50",
+      border: "border-red-500", // Added border for consistency
       message: "Your responses suggest moderately severe depression. Professional support is recommended."
     };
     return { 
       level: "Severe Depression", 
       color: "text-red-700", 
       bg: "bg-red-100",
+      border: "border-red-700", // Added border for consistency
       message: "Your responses suggest severe depression. Please seek professional help as soon as possible."
     };
   };
 
-  const handleSubmit = () => {
-    if (Object.keys(answers).length === questions.length) {
-      setSubmitted(true);
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      alert("Please answer all questions before submitting.");
+  // 🎯 NEW: API call with 409 conflict error handling
+  const saveAssessment = async (score, interpretation) => {
+    const token = localStorage.getItem('authToken');
+    if (!token) {
+      setSaveError("User not logged in. Please login again.");
+      return false;
+    }
+
+    const assessmentData = {
+      assessment_type: "PHQ-9", // Key for the database
+      score: score,
+      score_level: interpretation.level,
+    };
+
+    try {
+      const response = await fetch("http://localhost:5050/api/assessment/assessments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`
+        },
+        body: JSON.stringify(assessmentData),
+      });
+
+      if (!response.ok) {
+        const errorBody = await response.json();
+        
+        // Handle 409 Conflict for the one-per-day restriction
+        if (response.status === 409) {
+          throw new Error(errorBody.message); 
+        }
+        
+        throw new Error(errorBody.message || "Failed to save assessment score.");
+      }
+
+      console.log("PHQ-9 Assessment saved successfully!");
+      return true;
+    } catch (error) {
+      console.error("Error saving PHQ-9 score:", error);
+      setSaveError(error.message || "Network error while saving score.");
+      return false;
     }
   };
+
+  // 🎯 NEW: Async handleSubmit with API call and validation
+  const handleSubmit = async () => {
+    if (Object.keys(answers).length !== questions.length) {
+      setSaveError("Please answer all questions before submitting.");
+      return; 
+    }
+    
+    const score = calculateScore();
+    const interpretation = getInterpretation(score);
+
+    setIsSaving(true);
+    setSaveError(null); // Clear previous errors
+    
+    const success = await saveAssessment(score, interpretation);
+    
+    setIsSaving(false);
+
+    if (success) {
+      setSubmitted(true);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
 
   const handleReset = () => {
     setAnswers({});
     setSubmitted(false);
+    setSaveError(null); // Reset error state
   };
+
+  const handleBack = () => {
+    window.history.back();
+  };
+
 
   if (submitted) {
     const score = calculateScore();
     const interpretation = getInterpretation(score);
     const hasQuestion9 = answers[9] > 0;
+
+    // Helper function to extract border color
+    const interpretationBorder = interpretation.border || `border-${interpretation.color.split('-')[1]}-500`;
 
     return (
       <div className="min-h-screen font-sans bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] py-8 px-4">
@@ -93,7 +168,7 @@ const PHQ9Assessment = () => {
               <h2 className="text-3xl font-bold text-[#000459]">Assessment Complete</h2>
             </div>
 
-            <div className={`${interpretation.bg} border-l-4 border-${interpretation.color.split('-')[1]}-500 p-6 rounded-lg`}>
+            <div className={`${interpretation.bg} border-l-4 ${interpretationBorder} p-6 rounded-lg`}>
               <h3 className={`text-2xl font-bold ${interpretation.color} mb-2`}>
                 Your Score: {score}/27
               </h3>
@@ -132,10 +207,10 @@ const PHQ9Assessment = () => {
                 Take Again
               </button>
               <button
-                onClick={() => window.history.back()}
+                onClick={handleBack}
                 className="px-6 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full font-medium transition-transform hover:scale-105"
               >
-                Back to Home
+                Back to Dashboard
               </button>
             </div>
           </div>
@@ -148,11 +223,11 @@ const PHQ9Assessment = () => {
     <div className="min-h-screen font-sans bg-gradient-to-b from-[#B5D8EB] to-[#F4F8FB] py-8 px-4">
       <div className="max-w-4xl mx-auto">
         <button
-          onClick={() => window.history.back()}
+          onClick={handleBack}
           className="flex items-center gap-2 text-[#5AA7E8] hover:text-[#3F8BD1] mb-6 font-medium"
         >
           <ArrowLeft className="w-5 h-5" />
-          Back to Home
+          Back to Dashboard
         </button>
 
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
@@ -167,6 +242,13 @@ const PHQ9Assessment = () => {
               <strong>Instructions:</strong> Over the last 2 weeks, how often have you been bothered by any of the following problems?
             </div>
           </div>
+          
+          {/* 🎯 NEW: Error Message Display */}
+          {saveError && (
+              <div className="bg-red-100 text-red-700 p-3 rounded-lg text-center mb-6">
+                  Error saving score: {saveError}
+              </div>
+          )}
 
           <div className="space-y-6">
             {questions.map((question, index) => (
@@ -183,10 +265,11 @@ const PHQ9Assessment = () => {
                       <input
                         type="radio"
                         name={`question-${question.id}`}
-                        value={option.value}
+                        value={String(option.value)}
                         checked={answers[question.id] === option.value}
-                        onChange={() => handleAnswer(question.id, option.value)}
+                        onChange={(e) => handleAnswer(question.id, Number(e.target.value))}
                         className="w-4 h-4 text-[#5AA7E8]"
+                        disabled={isSaving} // 👈 NEW: Disable during save
                       />
                       <span className="text-gray-700">{option.label}</span>
                     </label>
@@ -199,10 +282,16 @@ const PHQ9Assessment = () => {
           <div className="mt-8 text-center">
             <button
               onClick={handleSubmit}
-              className="px-10 py-3 bg-[#5AA7E8] hover:bg-[#3F8BD1] text-white rounded-full font-medium transition-transform hover:scale-105 text-lg"
+              disabled={isSaving} // 👈 NEW
+              className={`px-10 py-3 text-white rounded-full font-medium transition-transform hover:scale-105 text-lg ${
+                isSaving ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#5AA7E8] hover:bg-[#3F8BD1]' // 👈 NEW
+              }`}
             >
-              Submit Assessment
+              {isSaving ? 'Submitting...' : 'Submit Assessment'}
             </button>
+            <p className="text-xs text-gray-500 mt-3">
+              All responses are confidential and used only for your self-assessment
+            </p>
           </div>
         </div>
       </div>

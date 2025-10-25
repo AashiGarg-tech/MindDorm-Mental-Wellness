@@ -465,16 +465,16 @@ const AuthPage = ({ onAuthSuccess }) => {
       if (isLogin) {
         // ✅ Login successful
         setSuccess('Login successful! Redirecting...');
-        
-        // Call parent function to update auth state
+
+        // 🔹 Store token in localStorage
+        localStorage.setItem('authToken', data.token);
+
+        // Call parent function if needed
         if (onAuthSuccess) {
           onAuthSuccess(data.token, data.user);
         }
 
-        // Navigate to HomePage after short delay
-        // setTimeout(() => {
-        //   navigate('/HomePage');
-        // }, 1500);
+        // Navigate based on role
         setTimeout(() => {
           if (data.user.role === 'counsellor') {
             navigate('/AdminDashboard');
