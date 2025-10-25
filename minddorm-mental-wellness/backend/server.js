@@ -188,7 +188,7 @@ app.use("/api/chat", chatRoutes);
 app.use("/api/users", usersRoutes);
 // 🤖 Gemini ChatBot Routes
 app.use("/api/gemini-chat", chatBotRoutes);
-
+app.use("/api/assessment", assessmentRoutes(pool));
 // 👇 REGISTER THE NEW MOOD TRACKER ROUTES
 app.use("/api/moods", moodRoutes); 
 //
