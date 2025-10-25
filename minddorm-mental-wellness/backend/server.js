@@ -249,7 +249,7 @@ import storiesRoutes from "./routes/stories.js";
 import chatRoutes from "./routes/chat.js";
 import usersRoutes from "./routes/users.js";
 import chatBotRoutes from "./routes/chatServer.js";
-
+import assessmentRoutes from "./routes/assessmentRoutes.js";
 // 👇 IMPORT THE NEW MOOD ROUTES FILE
 import moodRoutes from "./routes/moodRoutes.js"; 
 //
@@ -287,7 +287,7 @@ app.use("/api/chat", chatRoutes);
 app.use("/api/users", usersRoutes);
 // 🤖 Gemini ChatBot Routes
 app.use("/api/gemini-chat", chatBotRoutes);
-
+app.use("/api/assessment", assessmentRoutes(pool));
 // 👇 REGISTER THE NEW MOOD TRACKER ROUTES
 app.use("/api/moods", moodRoutes); 
 //
