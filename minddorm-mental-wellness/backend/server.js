@@ -227,21 +227,11 @@
 // });
 
 // app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
-
 import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
 import bodyParser from "body-parser";
-import fetch from "node-fetch";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-
-// --- START: FIXES ---
-// 1. Import Models to register them with Mongoose (fixes populate/CastError)
-import User from "./models/User.js"; 
-import Story from "./models/Story.js";
-// --- END: FIXES ---
 
 import { authRoutes } from "./routes/auth.js"; 
 import announcementsRoutes from "./routes/announcements.js";
@@ -252,12 +242,10 @@ import chatBotRoutes from "./routes/chatServer.js";
 import assessmentRoutes from "./routes/assessmentRoutes.js";
 // 👇 IMPORT THE NEW MOOD ROUTES FILE
 import moodRoutes from "./routes/moodRoutes.js"; 
-//
 
 import pool from "./config/db.js";
 
-
-// 2. CRITICAL FIX: Call dotenv.config() immediately after ALL imports
+// CRITICAL FIX: Call dotenv.config() immediately after ALL imports
 dotenv.config();
 
 const app = express();
@@ -267,36 +255,35 @@ const PORT = 5050;
 app.use(cors({ origin: "http://localhost:3000", credentials: true }));
 app.use(bodyParser.json());
 
-
-//🔌 MongoDB Connection (This section is already perfect)
+// 🔌 MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true
 }).then(() => console.log("✅ Connected to MongoDB"))
   .catch(err => console.error("❌ MongoDB error:", err));
 
-
 // 🔐 Authentication Routes
 app.use("/api/auth", authRoutes);
 
-
-// 📣 New Feature Routes
+// 📣 Feature Routes
 app.use("/api/announcements", announcementsRoutes);
 app.use("/api/stories", storiesRoutes);
 app.use("/api/chat", chatRoutes);
 app.use("/api/users", usersRoutes);
+
 // 🤖 Gemini ChatBot Routes
 app.use("/api/gemini-chat", chatBotRoutes);
+
+// 📊 Assessment Routes
 app.use("/api/assessment", assessmentRoutes(pool));
-// 👇 REGISTER THE NEW MOOD TRACKER ROUTES
-app.use("/api/moods", moodRoutes); 
-//
 
+// 🎭 MOOD TRACKER ROUTES (NEW)
+app.use("/api/mood", moodRoutes(pool)); 
 
-// 🤖 Chatbot Route (Existing code unchanged)
+// 🤖 Chatbot Route (OpenAI)
 const OPENAI_API_KEY = process.env.OPENAI_API_KEY;
 
-app.post("/api/chat", async (req, res) => {
+app.post("/api/chatbot", async (req, res) => {
   const userMessage = req.body.message;
 
   try {
@@ -325,4 +312,7 @@ app.post("/api/chat", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`✅ Server running on http://localhost:${PORT}`));
+app.listen(PORT, () => {
+  console.log(`✅ Server running on http://localhost:${PORT}`);
+  console.log(`📊 Mood API available at: http://localhost:${PORT}/api/mood`);
+});
