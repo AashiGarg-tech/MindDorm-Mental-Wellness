@@ -256,8 +256,9 @@ const AppContent = () => {
             path="/UserProfile" 
             element={
               <UserProfile 
-                userEmail={currentUser?.email || "user@betterx.com"} 
-                userName={currentUser?.name || "User"} 
+                user={currentUser}
+                token={authToken}
+                onUpdateProfile={(updatedUser) => setCurrentUser(updatedUser)}
               />
             } 
           />

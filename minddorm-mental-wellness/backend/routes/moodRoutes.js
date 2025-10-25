@@ -528,6 +528,31 @@ const moodRoutes = (pool) => {
     });
 
     // ------------------------------
+    // GET /api/mood/average
+    // Get overall average mood rating across all users
+    // ------------------------------
+    router.get('/average', authenticateToken, async (req, res) => {
+        try {
+            const query = `
+                SELECT ROUND(AVG(mood_rating)::numeric, 1) AS avg_mood, COUNT(*) AS total_entries
+                FROM mood_entries
+            `;
+
+            const result = await pool.query(query);
+            res.json({
+                success: true,
+                data: {
+                    averageMood: parseFloat(result.rows[0].avg_mood) || 0,
+                    totalEntries: parseInt(result.rows[0].total_entries) || 0
+                }
+            });
+        } catch (error) {
+            console.error('Error fetching overall average mood:', error);
+            res.status(500).json({ success: false, message: 'Failed to retrieve average mood.', error: error.message });
+        }
+    });
+
+    // ------------------------------
     // GET /api/mood/trend
     // Get mood trend data for chart (last N days)
     // ------------------------------
@@ -658,20 +683,30 @@ const moodRoutes = (pool) => {
 
         const date = check_in_date || new Date().toISOString().split('T')[0];
 
-        // Insert or update (upsert) using ON CONFLICT
-        const queryText = `
-            INSERT INTO mood_entries (user_id, mood_rating, check_in_date, notes, created_at)
-            VALUES ($1, $2, $3, $4, NOW())
-            ON CONFLICT (user_id, check_in_date)
-            DO UPDATE SET 
-                mood_rating = EXCLUDED.mood_rating,
-                notes = EXCLUDED.notes,
-                created_at = NOW()
-            RETURNING *
-        `;
-
         try {
-            const result = await pool.query(queryText, [userId, mood_rating, date, notes || null]);
+            // Check whether user already has an entry for this date
+            const existing = await pool.query(
+                `SELECT id FROM mood_entries WHERE user_id = $1 AND check_in_date = $2`,
+                [userId, date]
+            );
+
+            if (existing.rows.length > 0) {
+                // Entry already exists: block creation and instruct client to use update endpoint
+                return res.status(409).json({
+                    success: false,
+                    message: 'A mood entry for this date already exists. You can update it via PUT /api/mood/entry/:date.',
+                    alreadyExists: true
+                });
+            }
+
+            // Insert new entry (do not upsert) to enforce one-per-day creation rule
+            const insertQuery = `
+                INSERT INTO mood_entries (user_id, mood_rating, check_in_date, notes, created_at)
+                VALUES ($1, $2, $3, $4, NOW())
+                RETURNING *
+            `;
+
+            const result = await pool.query(insertQuery, [userId, mood_rating, date, notes || null]);
             res.status(201).json({
                 success: true,
                 message: 'Mood entry saved successfully',
