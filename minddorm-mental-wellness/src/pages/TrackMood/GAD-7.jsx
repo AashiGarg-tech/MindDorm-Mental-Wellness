@@ -1,9 +1,14 @@
 import React, { useState } from "react";
 import { ArrowLeft, CheckCircle } from "lucide-react";
 
+// NOTE: We assume your application handles authentication and provides a token
+// for the backend to extract the user ID (req.userId).
+
 const GAD7Assessment = () => {
   const [answers, setAnswers] = useState({});
   const [submitted, setSubmitted] = useState(false);
+  const [isSaving, setIsSaving] = useState(false); // New state for loading indicator
+  const [saveError, setSaveError] = useState(null); // New state for errors
 
   const questions = [
     { id: 1, text: "Feeling nervous, anxious, or on edge" },
@@ -57,18 +62,70 @@ const GAD7Assessment = () => {
     };
   };
 
-  const handleSubmit = () => {
-    if (Object.keys(answers).length === questions.length) {
+  // 💥 NEW FUNCTION: Handles the API call to save the score
+  const saveAssessment = async (score, interpretation) => {
+    const assessmentData = {
+      assessment_type: "GAD-7", 
+      score: score,
+      score_level: interpretation.level,
+    };
+
+    try {
+      const response = await fetch("http://localhost:5050/api/assessment/assessments", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          // 🚨 TODO: Replace 'YOUR_AUTH_TOKEN' with the actual token retrieved after login
+          // e.g., "Authorization": `Bearer ${localStorage.getItem('authToken')}` 
+        },
+        body: JSON.stringify(assessmentData),
+      });
+
+      if (!response.ok) {
+        // Throw an error if the backend responded with a non-2xx status code
+        const errorBody = await response.json();
+        throw new Error(errorBody.message || "Failed to save assessment score.");
+      }
+
+      console.log("Assessment saved successfully!");
+      return true;
+    } catch (error) {
+      console.error("Error saving GAD-7 score:", error);
+      setSaveError(error.message || "Network error while saving score.");
+      return false;
+    }
+  };
+
+  // 💥 UPDATED FUNCTION: Executes the save before showing results
+  const handleSubmit = async () => {
+    if (Object.keys(answers).length !== questions.length) {
+      // Use console.error instead of alert() for a cleaner flow
+      console.error("Please answer all questions before submitting.");
+      return; 
+    }
+
+    const score = calculateScore();
+    const interpretation = getInterpretation(score);
+
+    setIsSaving(true);
+    setSaveError(null);
+    
+    // 1. Attempt to save data
+    const success = await saveAssessment(score, interpretation);
+    
+    setIsSaving(false);
+
+    // 2. Only show the results if the save was successful
+    if (success) {
       setSubmitted(true);
       window.scrollTo({ top: 0, behavior: 'smooth' });
-    } else {
-      alert("Please answer all questions before submitting.");
     }
   };
 
   const handleReset = () => {
     setAnswers({});
     setSubmitted(false);
+    setSaveError(null);
   };
 
   if (submitted) {
@@ -125,7 +182,7 @@ const GAD7Assessment = () => {
                 onClick={() => window.history.back()}
                 className="px-6 py-2.5 bg-gray-200 hover:bg-gray-300 text-gray-700 rounded-full font-medium transition-transform hover:scale-105"
               >
-                Back to Home
+                Back to Dashboard
               </button>
             </div>
           </div>
@@ -142,7 +199,7 @@ const GAD7Assessment = () => {
           className="flex items-center gap-2 text-[#5AA7E8] hover:text-[#3F8BD1] mb-6 font-medium"
         >
           <ArrowLeft className="w-5 h-5" />
-          Back to Home
+          Back to Dashboard
         </button>
 
         <div className="bg-white rounded-2xl shadow-lg p-8 mb-6">
@@ -157,6 +214,13 @@ const GAD7Assessment = () => {
               <strong>Instructions:</strong> Over the last 2 weeks, how often have you been bothered by the following problems?
             </div>
           </div>
+          
+          {/* Display Save Error if applicable */}
+          {saveError && (
+              <div className="bg-red-100 text-red-700 p-3 rounded-lg text-center mb-6">
+                  Error saving score: {saveError}
+              </div>
+          )}
 
           <div className="space-y-6">
             {questions.map((question, index) => (
@@ -189,9 +253,12 @@ const GAD7Assessment = () => {
           <div className="mt-8 text-center">
             <button
               onClick={handleSubmit}
-              className="px-10 py-3 bg-[#5AA7E8] hover:bg-[#3F8BD1] text-white rounded-full font-medium transition-transform hover:scale-105 text-lg"
+              disabled={isSaving} // Disable button while saving
+              className={`px-10 py-3 text-white rounded-full font-medium transition-transform hover:scale-105 text-lg ${
+                isSaving ? 'bg-gray-400 cursor-not-allowed' : 'bg-[#5AA7E8] hover:bg-[#3F8BD1]'
+              }`}
             >
-              Submit Assessment
+              {isSaving ? 'Submitting...' : 'Submit Assessment'}
             </button>
             <p className="text-xs text-gray-500 mt-3">
               All responses are confidential and used only for your self-assessment
